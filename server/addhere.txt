@@ -1,0 +1,14 @@
+user:
+first name
+last name
+sex
+dob
+email
+password
+courses
+
+
+courses:
+course name
+introduction
+videos
