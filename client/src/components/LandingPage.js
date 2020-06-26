@@ -8,6 +8,8 @@ export default function LandingPage() {
 	return (
 		<div>
 			<NavigationBar />
+
+			{/* Landing page body */}
 			<Container style={{ paddingTop: '2em' }}>
 				<Row style={{ marginTop: "5em" }}>
 					<Col className="align-self-center">
@@ -27,7 +29,7 @@ export default function LandingPage() {
 				</Row>
 			</Container>
 			<Container id='features'>
-				<Row style={{ marginTop: "5em", marginBottom: '7em'}}>
+				<Row style={{ marginTop: "5em", marginBottom: '13em'}}>
 					<Col className="d-none d-md-block col-md-6">
 						<Image src="images/feature.png" className="img-fluid visible-lg-block" />
 					</Col>
@@ -39,6 +41,8 @@ export default function LandingPage() {
 					</Col>
 				</Row>
 			</Container>
+			{/* Landing page end */}
+
 			<FooterBar />
 		</div>
 	)

@@ -4,7 +4,7 @@ import { Col, Row, Image, Container } from "react-bootstrap"
 
 export default function FooterBar() {
 	return (
-		<div style={{ backgroundColor: '#E5EAFF' }}>
+		<div className="fixed" style={{ backgroundColor: '#E5EAFF'}}>
 			<Container>
 				<Row className='justify-content-center'>
 					<Col className="align-self-start" style={{ marginTop: '1.5em' }}>
