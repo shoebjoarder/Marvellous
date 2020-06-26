@@ -6,9 +6,7 @@ import FooterBar from './components/FooterBar';
 function App() {
   return (
     <div className="App">
-      <NavigationBar />
       <LandingPage />
-      <FooterBar />
     </div>
   );
 }
