@@ -16,7 +16,6 @@ export default function FooterBar() {
 							Follow us at 	<Image src="images/github.png" style={{ height: '1em', width: 'auto', paddingRight: '0.15em', marginBottom: '0.3em' }} />Github
 						</a>
 					</Col>
-					
 				</Row>
 				<br></br>
 			</Container>
