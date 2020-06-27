@@ -30,8 +30,9 @@ export default function LoginPage() {
 						</Row>
 					</Col>
 				</Row>
-
 			</Container>
+
+			{/* TODO: give a prop to the FooterBar to make it fix */}
 			<FooterBar />
 		</div>
 	)
