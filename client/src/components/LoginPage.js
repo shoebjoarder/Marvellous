@@ -25,7 +25,7 @@ export default function LoginPage() {
 						</Row>
 						<Row>
 							<Col style={{ marginTop: '10em', textAlign: "center", verticalAlign: "middle" }}>
-								<p>New user? <u><strong>Join Now!</strong></u></p>
+								<p>New user? <a href="/" style={{ color: 'black' }}><strong>Join Now!</strong></a></p>
 							</Col>
 						</Row>
 					</Col>

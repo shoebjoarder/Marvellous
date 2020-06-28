@@ -5,6 +5,7 @@ import LoginPage from './components/LoginPage';
 import RegistrationPage from './components/RegistrationPage';
 import BrowseCourses from './components/BrowseCourses';
 import Course from './components/Course';
+import Profile from './components/Profile';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <RegistrationPage />
       <BrowseCourses />
       <Course />
+      <Profile />
     </div>
   );
 }

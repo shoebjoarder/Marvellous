@@ -33,8 +33,8 @@ export default function Course() {
 							<Card.Img variant="top" className="mx-auto d-block" style={{ height: '230px', width: '230px' }} src="./images/bootstrap.png" />
 
 							<Card.Body style={{ padding: '1.5em' }}>
-								<Card.Text style={{ fontSize: '1.1em', paddingBottom: '1.2em' }}>
-									<Row style={{ color: '#8A8A8A', marginLeft: "1em" }}>
+								<Card.Text style={{ fontSize: '1.4em', paddingBottom: '1.2em' }}>
+									<Row style={{ color: '#8A8A8A', textAlign:"center" }}>
 										<Col>
 
 											{/* TODO: Values will change dynamically */}

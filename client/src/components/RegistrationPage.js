@@ -11,14 +11,14 @@ export default function RegistrationPage() {
 
 			<Container>
 				<Row style={{ marginTop: "2em", marginBottom: '11.1em' }}>
-					<Col className="align-self-center" style={{ paddingBottom: '5em' }}>
-						<p style={{ fontSize: '3.5em' }}>Join now and become <u style={{ color: '#1E38BF' }}><strong>Marvellous!</strong></u></p>
+					<Col className="align-self-center md-6" style={{ paddingBottom: '5em' }}>
+						<p style={{ fontSize: '3.32em' }}>Join now and become <u style={{ color: '#1E38BF' }}><strong>Marvellous!</strong></u></p>
 					</Col>
 
 					{/* Registration form */}
 					{/* TODO: make a route with login */}
 
-					<Col className="align-self-center" style={{ paddingLeft: '4em', paddingTop: '5em' }}>
+					<Col className="align-self-center md-6" style={{ paddingLeft: '4em', paddingTop: '5em' }}>
 						<Form style={{ border: "1px solid #000", padding: "50px 60px", backgroundColor: '#fff', borderRadius: '0.8em' }}>
 							
 							<Form.Group controlId="formFirstName">
