@@ -4,6 +4,7 @@ import AboutUs from './components/AboutUs';
 import LoginPage from './components/LoginPage';
 import RegistrationPage from './components/RegistrationPage';
 import BrowseCourses from './components/BrowseCourses';
+import Course from './components/Course';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       {/* <AboutUs /> */}
       {/* <LoginPage /> */}
       {/* <RegistrationPage /> */}
-      <BrowseCourses />
+      {/* <BrowseCourses /> */}
+      <Course />
 
     </div>
   );

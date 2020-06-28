@@ -1,8 +1,7 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card } from "react-bootstrap"
-import NavigationBar from './NavigationBar';
-import FooterBar from './FooterBar';
+
 
 export default function CourseCard() {
 	return (
@@ -11,7 +10,7 @@ export default function CourseCard() {
 				<Card.Img variant="top" className="mx-auto d-block" style={{ height: '230px', width: '230px' }} src="./images/bootstrap.png" />
 				<Card.Body>
 					<Card.Title>Course title</Card.Title>
-					<Card.Text style={{ paddingBottom: '1.2em'}}>
+					<Card.Text style={{ paddingBottom: '1.2em' }}>
 						This is a course card with supporting text below as a natural lead-in to
 						additional content. This content is a little bit longer.
       		</Card.Text>
@@ -20,5 +19,3 @@ export default function CourseCard() {
 		</div>
 	)
 }
-
-{/* <Card.Img style={{ height:'230px', width:'230px'}} variant="top" src="./images/bootstrap.png" /> */ }

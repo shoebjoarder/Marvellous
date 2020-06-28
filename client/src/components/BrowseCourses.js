@@ -1,6 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Col, Row, Image, CardDeck } from "react-bootstrap"
+import { Container, CardDeck } from "react-bootstrap"
 import NavigationBar from './NavigationBar';
 import FooterBar from './FooterBar';
 import CourseCard from './CourseCard';
