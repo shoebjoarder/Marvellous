@@ -12,7 +12,7 @@ export default function LoginPage() {
 			<Container>
 				<Row style={{ marginTop: "9.75em", marginBottom: '11.1em' }}>
 					<Col className="align-self-center" style={{ paddingBottom: '5em'}}>
-						<p style={{ fontSize: '4em' }}>Learn to think like a <u style={{ color: '#1E38BF' }}>programmer</u></p>
+						<p style={{ fontSize: '3.5em' }}>Learn to think like a <u style={{ color: '#1E38BF' }}>programmer</u></p>
 						<p style={{ fontSize: '1.5em' }}>All the courses are crafted with the principles of learning in mind</p>
 					</Col>
 					<Col className="align-self-center" style={{ paddingLeft: '4em', paddingTop: '5em' }}>

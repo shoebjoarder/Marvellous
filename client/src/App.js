@@ -9,13 +9,12 @@ import Course from './components/Course';
 function App() {
   return (
     <div className="App">
-      {/* <LandingPage /> */}
-      {/* <AboutUs /> */}
-      {/* <LoginPage /> */}
-      {/* <RegistrationPage /> */}
-      {/* <BrowseCourses /> */}
+      <LandingPage />
+      <AboutUs />
+      <LoginPage />
+      <RegistrationPage />
+      <BrowseCourses />
       <Course />
-
     </div>
   );
 }

@@ -12,7 +12,7 @@ export default function RegistrationPage() {
 			<Container>
 				<Row style={{ marginTop: "2em", marginBottom: '11.1em' }}>
 					<Col className="align-self-center" style={{ paddingBottom: '5em' }}>
-						<p style={{ fontSize: '4em' }}>Join now and become <u style={{ color: '#1E38BF' }}><strong>Marvellous!</strong></u></p>
+						<p style={{ fontSize: '3.5em' }}>Join now and become <u style={{ color: '#1E38BF' }}><strong>Marvellous!</strong></u></p>
 					</Col>
 
 					{/* Registration form */}
