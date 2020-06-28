@@ -9,7 +9,7 @@ export default function LoginPage() {
 		<div>
 			<NavigationBar />
 
-			<Container id='features'>
+			<Container>
 				<Row style={{ marginTop: "9.75em", marginBottom: '11.1em' }}>
 					<Col className="align-self-center" style={{ paddingBottom: '5em'}}>
 						<p style={{ fontSize: '4em' }}>Learn to think like a <u style={{ color: '#1E38BF' }}>programmer</u></p>

@@ -9,7 +9,7 @@ export default function AboutUs() {
 		<div>
 			<NavigationBar />
 
-			<Container id='features'>
+			<Container>
 				<Row style={{ marginTop: "5em", marginBottom: '21.2em' }}>
 					<Col className="d-none d-md-block col-md-6 text-center">
 							<Image src="images/nxgenCover.png" className="img-fluid visible-lg-block" style={{ height: "13em" }} />

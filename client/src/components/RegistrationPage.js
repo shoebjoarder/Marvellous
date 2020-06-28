@@ -1,6 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Col, Row, Form, Image, Button } from "react-bootstrap"
+import { Container, Col, Row, Form, Button } from "react-bootstrap"
 import NavigationBar from './NavigationBar';
 import FooterBar from './FooterBar';
 
@@ -20,14 +20,17 @@ export default function RegistrationPage() {
 
 					<Col className="align-self-center" style={{ paddingLeft: '4em', paddingTop: '5em' }}>
 						<Form style={{ border: "1px solid #000", padding: "50px 60px", backgroundColor: '#fff', borderRadius: '0.8em' }}>
+							
 							<Form.Group controlId="formFirstName">
 								<Form.Label>Firstname</Form.Label>
 								<Form.Control type="text" placeholder="e.g. Jon"></Form.Control>
 							</Form.Group>
+
 							<Form.Group controlId="formLastName">
 								<Form.Label>Lastname</Form.Label>
 								<Form.Control type="text" placeholder="e.g. Doe"></Form.Control>
 							</Form.Group>
+
 							<Form.Group controlId="exampleForm.ControlSelect1">
 								<Form.Label>Gender</Form.Label>
 								<Form.Control as="select">
@@ -35,14 +38,17 @@ export default function RegistrationPage() {
 									<option>Female</option>
 								</Form.Control>
 							</Form.Group>
+
 							<Form.Group controlId="formEmail">
 								<Form.Label>Email</Form.Label>
 								<Form.Control type="email" placeholder="e.g. jon.doe@example.com" />
 							</Form.Group>
+
 							<Form.Group controlId="formInputPassword">
 								<Form.Label>Password</Form.Label>
 								<Form.Control type="password" placeholder="Enter password" name="password" required id="pass"></Form.Control>
 							</Form.Group>
+
 							<Form.Group controlId="formComfirmPassword">
 								<Form.Label>Confirm Password</Form.Label>
 								<Form.Control type="password" placeholder="Confirm password" name="cpassword" required id="cpass"></Form.Control>
