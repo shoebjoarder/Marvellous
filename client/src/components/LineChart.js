@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Line } from 'react-chartjs-2'
 
 const data = {
-	labels: ["Assignment 1", "Assignment 2", "Assignment 3", "Assignment 4", "Assignment 5"],
+	labels: ["Quiz 1", "Quiz 2", "Quiz 3", "Quiz 4", "Quiz 5"],
 	datasets: [{
-		label: "Advanced Web Technologies",
+		label: "Bootstrap",
 		lineTension: 0.3,
 		backgroundColor: "rgba(78, 115, 223, 0.05)",
 		borderColor: "rgba(78, 115, 223, 1)",
@@ -26,7 +26,7 @@ export class LineChart extends Component {
 		return (
 			<div className="card shadow">
 				<div className="card-header">
-					<h6 className="m-0 font-weight-bold text-primary">My Assignments Progress</h6>
+					<h6 className="m-0 font-weight-bold text-primary">My Quiz Progress</h6>
 				</div>
 				<div className="card-body">
 					< Line ref="chart" data={data} />
