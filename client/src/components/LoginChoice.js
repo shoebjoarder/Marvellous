@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Container, Col, Row, Image, Button } from "react-bootstrap";
-
-import LoginForm from './LoginForm';
-
 
 export default class LoginChoice extends Component {
 	constructor(props) {
