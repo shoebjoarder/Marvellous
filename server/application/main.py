@@ -45,6 +45,6 @@ def registration():
         {'firstname': firstname, 'lastname': lastname, 'gender': gender, 'email': email, 'password': password})
 
     req = eval(dumps(query, json_options=RELAXED_JSON_OPTIONS))
-    return jsonify({"login": "success"})
+    return jsonify({"register": "registration complete"})
 
 # , "firstname": req["firstname"], "lastname": req['lastname'], "gender": req[gender], "email": req['email']
