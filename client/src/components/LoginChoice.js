@@ -6,12 +6,20 @@ export default class LoginChoice extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			chooseEmail: false
+			chooseEmail: false,
+			newUser: false,
 		}
 	}
 
-	handleClick = () => {
-		this.props.changeLogin(this.state.emailLogin)
+	handleEmail = () => {
+		this.props.changeLogin(this.state.emailLogin);
+		console.log(this.state.chooseEmail);
+	}
+
+	handleNewUser = () => {
+		/* e.preventDefault(); */
+		this.props.changeUser(this.state.newUser);
+		console.log(this.state.newUser);
 	}
 
 	render() {
@@ -29,11 +37,11 @@ export default class LoginChoice extends Component {
 							</Row>
 							<br></br>
 							<Row>
-								<Button onClick={this.handleClick} size='lg' block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '2em' }}>Log in with E-Mail</Button>
+								<Button onClick={this.handleEmail} size='lg' block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '2em' }}>Log in with E-Mail</Button>
 							</Row>
 							<Row>
 								<Col style={{ marginTop: '10em', textAlign: "center", verticalAlign: "middle" }}>
-									<p>New user? <a href="/" style={{ color: 'black' }}><strong>Join Now!</strong></a></p>
+								<Button onClick={this.handleNewUser} variant="outline-light" style={{ backgroundColor: '#F3F6FE', color:"black" }} >New user? <strong>Join Now!</strong></Button>
 								</Col>
 							</Row>
 						</Col>

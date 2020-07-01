@@ -3,34 +3,54 @@ import LoginChoice from './LoginChoice';
 import LoginForm from './LoginForm';
 import NavigationBar from './NavigationBar';
 import FooterBar from './FooterBar';
+import RegistrationPage from './RegistrationPage';
 
 export default class MainLoginPage extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			chooseEmail: true
+			chooseEmail: true,
+			newUser: true
 		}
 	}
 
 	changeLogin = (email) => {
-		if (this.state.chooseEmail) {
-			this.setState({
-				chooseEmail: email
-			})
-		} else {
-			this.setState({
-				chooseEmail: email
-			})
-		}
+		this.setState({
+			chooseEmail: email
+		})
+	}
 
+	changeUser = (user) => {
+		this.setState({
+			newUser: user
+		})
 	}
 
 	render() {
-		if (this.state.chooseEmail) {
+/* 		if (this.state.chooseEmail && this.state.newUser) {
 			return (
 				<div>
 					<NavigationBar />
-					<LoginChoice changeLogin={this.changeLogin} />
+					<LoginChoice changeLogin={this.changeLogin} changeUser={this.changeUser} />
+					<FooterBar />
+				</div>
+			)
+		}
+		else */ 
+		if (!this.state.chooseEmail && this.state.newUser) {
+			return (
+				<div>
+					<NavigationBar />
+					<LoginForm changeLogin={this.changeLogin} />
+					<FooterBar />
+				</div>
+			)
+		}
+		else if (!this.state.newUser) {
+			return (
+				<div>
+					<NavigationBar />
+					<RegistrationPage changeUser={this.changeUser} />
 					<FooterBar />
 				</div>
 			)
@@ -38,9 +58,7 @@ export default class MainLoginPage extends Component {
 			return (
 				<div>
 					<NavigationBar />
-					<LoginForm changeLogin={this.changeLogin} />
-
-					{/* TODO: give a prop to the FooterBar to make it fix */}
+					<LoginChoice changeLogin={this.changeLogin} changeUser={this.changeUser} />
 					<FooterBar />
 				</div>
 			)
