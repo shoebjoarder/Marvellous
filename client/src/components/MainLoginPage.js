@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import LoginChoice from './LoginChoice';
 import LoginForm from './LoginForm';
-import NavigationBar from './NavigationBar';
-import FooterBar from './FooterBar';
+
 import RegistrationPage from './RegistrationPage';
 
 export default class MainLoginPage extends Component {
@@ -27,42 +26,25 @@ export default class MainLoginPage extends Component {
 	}
 
 	render() {
-/* 		if (this.state.chooseEmail && this.state.newUser) {
-			return (
-				<div>
-					<NavigationBar />
-					<LoginChoice changeLogin={this.changeLogin} changeUser={this.changeUser} />
-					<FooterBar />
-				</div>
-			)
-		}
-		else */ 
 		if (!this.state.chooseEmail && this.state.newUser) {
 			return (
 				<div>
-					<NavigationBar />
 					<LoginForm changeLogin={this.changeLogin} />
-					<FooterBar />
 				</div>
 			)
 		}
 		else if (!this.state.newUser) {
 			return (
 				<div>
-					<NavigationBar />
 					<RegistrationPage changeUser={this.changeUser} />
-					<FooterBar />
 				</div>
 			)
 		} else {
 			return (
-				<div>
-					<NavigationBar />
+				<div>			
 					<LoginChoice changeLogin={this.changeLogin} changeUser={this.changeUser} />
-					<FooterBar />
 				</div>
 			)
 		}
-
 	}
 }
