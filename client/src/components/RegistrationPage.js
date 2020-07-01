@@ -73,8 +73,7 @@ export default class RegistrationPage extends React.Component {
 							</Form>
 							<Row>
 								<Col style={{ marginTop: '3em', textAlign: "center", verticalAlign: "middle" }}>
-									<Button onClick={this.handleNewUser} variant="outline-light" style={{ backgroundColor: '#F3F6FE', color: "black" }} >New user? <strong>Join Now!</strong></Button>
-{/* 									<p>Already a user? <a href="/" onClick={this.handleUser} style={{ color: 'black' }}><strong>Login Now!</strong></a></p> */}
+									<Button onClick={this.handleNewUser} variant="outline-light" style={{ backgroundColor: '#F3F6FE', color: "black" }} >Already a user? <strong>Login Now!</strong></Button>
 								</Col>
 							</Row>
 						</Col>
