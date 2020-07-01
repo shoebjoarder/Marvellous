@@ -106,3 +106,5 @@ dist
 
 # Custom
 /client/node_modules/
+__pycache__/
+.vscode/
