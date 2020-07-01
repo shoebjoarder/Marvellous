@@ -20,13 +20,31 @@ def login():
     email = request.get_json()['email']
     password = request.get_json()['password']
 
-    user = mongo.db.users
-    q = user.find_one({'email': email, 'password': password})
+    user_collection = mongo.db.users
+    query = user_collection.find_one({'email': email, 'password': password})
 
-    # return req['firstname']
-    if q is None:
+    if query is None:
         return jsonify({"login": "Incorrect credentials! Please check your email or password."})
 
     else:
-        req = eval(dumps(q, json_options=RELAXED_JSON_OPTIONS))
-        return jsonify({"login": "Login Successfully!", "firstname": req['firstname'], "lastname": req['lastname']})
+        req = eval(dumps(query, json_options=RELAXED_JSON_OPTIONS))
+        return jsonify({"login": "success", "firstname": req['firstname'], "lastname": req["lastname"], "email": req["email"]})
+
+
+@main.route('/registration', methods=['POST'])
+def registration():
+    firstname = request.get_json()['firstname']
+    lastname = request.get_json()['lastname']
+    gender = request.get_json()['gender']
+    email = request.get_json()['email']
+    password = request.get_json()['password']
+    cpassword = request.get_json()['cpassword']
+
+    user_collection = mongo.db.users
+    query = user_collection.insert(
+        {'firstname': firstname, 'lastname': lastname, 'gender': gender, 'email': email, 'password': password})
+
+    req = eval(dumps(query, json_options=RELAXED_JSON_OPTIONS))
+    return jsonify({"login": "success"})
+
+# , "firstname": req["firstname"], "lastname": req['lastname'], "gender": req[gender], "email": req['email']
