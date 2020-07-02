@@ -7,7 +7,7 @@ export default function Course() {
 	return (
 		<div>
 			<Container style={{ marginTop: "5em", marginBottom: '10.2em' }}>
-				<a href="" style={{ color: '#8A8A8A', fontSize: '1.3em', paddingBottom: '1.5em' }}>&lt; Back to courses</a>
+				<a href="/browse" style={{ color: '#8A8A8A', fontSize: '1.3em', paddingBottom: '1.5em' }}>&lt; Back to courses</a>
 
 				{/* Course Description */}
 				<Row style={{ marginTop: "1em" }}>

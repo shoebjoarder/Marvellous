@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Row, Image, Button } from "react-bootstrap";
-import NavigationBar from './NavigationBar';
-import FooterBar from './FooterBar';
+
 
 export default class LoginChoice extends Component {
 	constructor(props) {
