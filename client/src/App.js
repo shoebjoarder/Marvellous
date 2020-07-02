@@ -6,10 +6,14 @@ import RegistrationPage from './components/RegistrationPage';
 import BrowseCourses from './components/BrowseCourses';
 import Course from './components/Course';
 import Profile from './components/Profile';
+import NavigationBar from './components/NavigationBar'
+import FooterBar from './components/FooterBar';
 
 function App() {
   return (
     <div className="App">
+      <NavigationBar />
+
 {/*       <LandingPage />
       <AboutUs /> */}
       <MainLoginPage />
@@ -17,6 +21,7 @@ function App() {
       <BrowseCourses />
       <Course />
       <Profile /> */}
+      <FooterBar />
     </div>
   );
 }

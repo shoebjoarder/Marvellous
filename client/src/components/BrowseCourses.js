@@ -1,15 +1,12 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, CardDeck } from "react-bootstrap"
-import NavigationBar from './NavigationBar';
-import FooterBar from './FooterBar';
 import CourseCard from './CourseCard';
+
 
 export default function BrowseCourses() {
 	return (
 		<div>
-			<NavigationBar />
-
 			<Container style={{ marginTop: "5em", marginBottom: '21.2em' }}>
 
 				<h1 style={{ fontSize: '4.5em' }}>Your Courses</h1>
@@ -31,8 +28,6 @@ export default function BrowseCourses() {
 				</CardDeck>
 
 			</Container>
-
-			<FooterBar />
 		</div>
 	)
 }

@@ -1,14 +1,11 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Row, Image, Button } from "react-bootstrap"
-import NavigationBar from './NavigationBar';
-import FooterBar from './FooterBar';
+
 
 export default function LandingPage() {
 	return (
 		<div>
-			<NavigationBar />
-
 			{/* Landing page body */}
 			<Container style={{ paddingTop: '2em' }}>
 				<Row style={{ marginTop: "5em" }}>
@@ -42,8 +39,6 @@ export default function LandingPage() {
 				</Row>
 			</Container>
 			{/* Landing page end */}
-
-			<FooterBar />
 		</div>
 	)
 }

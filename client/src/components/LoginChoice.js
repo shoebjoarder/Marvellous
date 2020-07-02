@@ -27,7 +27,6 @@ export default class LoginChoice extends Component {
 	render() {
 		return (
 			<div>
-				<NavigationBar />
 				<Container>
 					<Row style={{ marginTop: "9.45em", marginBottom: '11.1em' }}>
 						<Col className="align-self-center" style={{ paddingBottom: '5em' }}>
@@ -50,7 +49,6 @@ export default class LoginChoice extends Component {
 						</Col>
 					</Row>
 				</Container>
-				<FooterBar />	
 			</div>
 		)
 	}
