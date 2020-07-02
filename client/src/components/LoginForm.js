@@ -3,8 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Row, Form, Button } from "react-bootstrap";
 import axios from 'axios'
 import LandingPage from './LandingPage.js'
-import NavigationBar from './NavigationBar';
-import FooterBar from './FooterBar';
 
 
 export default class LoginForm extends Component {
@@ -59,7 +57,6 @@ export default class LoginForm extends Component {
 			return (
 				<div>
 					{/* TODO: when the login is successful, pass a prop to navigation bar to change */}
-					<NavigationBar />
 					<Container>
 						<Row style={{ marginTop: "9.75em", marginBottom: '11.4em' }}>
 							<Col className="align-self-center" style={{ paddingBottom: '5em' }}>
@@ -80,7 +77,7 @@ export default class LoginForm extends Component {
 										<Form.Label>Password</Form.Label>
 										<Form.Control type="password" name="password" id="password" value={this.state.password} onChange={this.handleInputs} required ></Form.Control>
 									</Form.Group>
-
+									{this.state.result.login}
 									<br></br>
 									<Button className="float-right" onClick={this.submit} style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '1.5em' }}>Login</Button>
 									<br></br>
@@ -89,7 +86,6 @@ export default class LoginForm extends Component {
 							</Col>
 						</Row>
 					</Container>
-					<FooterBar />
 				</div >
 			)
 		}

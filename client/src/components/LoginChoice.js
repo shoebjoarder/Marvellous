@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Row, Image, Button } from "react-bootstrap";
-import NavigationBar from './NavigationBar';
-import FooterBar from './FooterBar';
+
 
 export default class LoginChoice extends Component {
 	constructor(props) {
@@ -27,7 +26,6 @@ export default class LoginChoice extends Component {
 	render() {
 		return (
 			<div>
-				<NavigationBar />
 				<Container>
 					<Row style={{ marginTop: "9.45em", marginBottom: '11.1em' }}>
 						<Col className="align-self-center" style={{ paddingBottom: '5em' }}>
@@ -50,7 +48,6 @@ export default class LoginChoice extends Component {
 						</Col>
 					</Row>
 				</Container>
-				<FooterBar />	
 			</div>
 		)
 	}

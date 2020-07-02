@@ -1,14 +1,11 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Row, Image } from "react-bootstrap"
-import NavigationBar from './NavigationBar';
-import FooterBar from './FooterBar';
+
 
 export default function AboutUs() {
 	return (
 		<div>
-			<NavigationBar />
-
 			<Container>
 				<Row style={{ marginTop: "5em", marginBottom: '21.2em' }}>
 					<Col className="d-none d-md-block col-md-6 text-center">
@@ -30,8 +27,6 @@ export default function AboutUs() {
 					</Col>
 				</Row>
 			</Container>
-
-			<FooterBar />
 		</div>
 	)
 }

@@ -40,11 +40,17 @@ def registration():
     password = request.get_json()['password']
     cpassword = request.get_json()['cpassword']
 
-    user_collection = mongo.db.users
-    query = user_collection.insert(
-        {'firstname': firstname, 'lastname': lastname, 'gender': gender, 'email': email, 'password': password})
+    if password != cpassword:
+        return jsonify({"register": "Password doesn't match!"})
 
-    req = eval(dumps(query, json_options=RELAXED_JSON_OPTIONS))
-    return jsonify({"register": "registration complete"})
+    elif (any(x.isupper() for x in password) and any(x.islower() for x in password) and any(x.isdigit() for x in password) and len(password) > 5):
+        user_collection = mongo.db.users
+        query = user_collection.insert(
+            {'firstname': firstname, 'lastname': lastname, 'gender': gender, 'email': email, 'password': password})
+
+        req = eval(dumps(query, json_options=RELAXED_JSON_OPTIONS))
+        return jsonify({"register": "registration complete"})
+    else:
+         return jsonify({"register": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 6 characters"})
 
 # , "firstname": req["firstname"], "lastname": req['lastname'], "gender": req[gender], "email": req['email']

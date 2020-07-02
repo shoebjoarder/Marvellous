@@ -2,8 +2,6 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Row, Form, Button } from "react-bootstrap"
 import axios from 'axios'
-import NavigationBar from './NavigationBar';
-import FooterBar from './FooterBar';
 import LoginForm from './LoginForm';
 
 export default class RegistrationPage extends React.Component {
@@ -36,7 +34,7 @@ export default class RegistrationPage extends React.Component {
 			this.setState({
 				"result": response.data,
 			});
-			console.log(response.data.login);
+			console.log(response.data.register);
 		}).catch((error) => {
 			console.log(error.response.request);
 		})
@@ -57,10 +55,15 @@ export default class RegistrationPage extends React.Component {
 
 
 	render() {
-		if (this.state.result === "") {
+		if (this.state.result.register === "registration complete") {
 			return (
 				<div>
-					<NavigationBar />
+					<LoginForm />
+				</div>
+			)
+		} else {
+			return (
+				<div>
 					<Container>
 						<Row style={{ marginTop: "2em", marginBottom: '11.1em' }}>
 							<Col className="align-self-center md-6" style={{ paddingBottom: '5em' }}>
@@ -114,7 +117,10 @@ export default class RegistrationPage extends React.Component {
 										{/* <Form.Control type="password" placeholder="Confirm password" name="cpassword" required id="cpass"></Form.Control> */}
 										<Form.Control type="password" name="cpassword" id="cpassword" value={this.state.cpassword} onChange={this.handleInputs} required ></Form.Control>
 									</Form.Group>
-									<br></br>
+
+									{/* display if error exists */}
+									{this.state.result.register}
+									<br /><br />
 									<Button className="float-right" onClick={this.submit} style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '1.5em' }}>Confirm Sign Up</Button>
 									<br></br>
 									<br></br>
@@ -127,16 +133,8 @@ export default class RegistrationPage extends React.Component {
 							</Col>
 						</Row>
 					</Container>
-					<FooterBar />
 				</div>
 			)
-		} else if (this.state.result.register === "registration complete") {
-			return (
-				<div>
-					<LoginForm />
-				</div>
-			)
-
 		}
 
 	}

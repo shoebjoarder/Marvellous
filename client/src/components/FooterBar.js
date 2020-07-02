@@ -8,7 +8,7 @@ export default function FooterBar() {
 			<Container>
 				<Row className='justify-content-center'>
 					<Col className="align-self-start" style={{ marginTop: '1.5em' }}>
-						<a href="/" style={{ fontSize: '1.7em', color: 'black' }}>
+						<a href="/about" style={{ fontSize: '1.7em', color: 'black' }}>
 							<Image src="images/nxgenLogo.png" style={{ height: '1.3em', width: 'auto', paddingRight: '0.3em', marginBottom: '0.1em' }} />About Us</a>
 					</Col>
 					<Col className="col-sm-4 align-self-end order-sm-2" style={{ marginTop: '1.5em', textAlign: 'right'}}>

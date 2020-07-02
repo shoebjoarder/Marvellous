@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import LoginChoice from './LoginChoice';
 import LoginForm from './LoginForm';
-
 import RegistrationPage from './RegistrationPage';
 
 export default class MainLoginPage extends Component {

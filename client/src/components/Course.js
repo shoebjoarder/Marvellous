@@ -1,16 +1,13 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Row, Card, Button } from "react-bootstrap"
-import NavigationBar from './NavigationBar';
-import FooterBar from './FooterBar';
+
 
 export default function Course() {
 	return (
 		<div>
-			<NavigationBar />
-
 			<Container style={{ marginTop: "5em", marginBottom: '10.2em' }}>
-				<a href="" style={{ color: '#8A8A8A', fontSize: '1.3em', paddingBottom: '1.5em' }}>&lt; Back to courses</a>
+				<a href="/browse" style={{ color: '#8A8A8A', fontSize: '1.3em', paddingBottom: '1.5em' }}>&lt; Back to courses</a>
 
 				{/* Course Description */}
 				<Row style={{ marginTop: "1em" }}>
@@ -58,8 +55,6 @@ export default function Course() {
 					</Col>
 				</Row>
 			</Container>
-
-			<FooterBar />
 		</div>
 	)
 }
