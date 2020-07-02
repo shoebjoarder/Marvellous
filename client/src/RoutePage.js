@@ -1,19 +1,23 @@
 import React from 'react';
-import LandingPage from './components/LandingPage';
-import AboutUs from './components/AboutUs';
-import MainLoginPage from './components/MainLoginPage';
-import BrowseCourses from './components/BrowseCourses';
-import Course from './components/Course';
-import Profile from './components/Profile';
-import { Route } from 'react-router-dom'
 import RegistrationPage from './components/RegistrationPage';
+import BrowseCourses from './components/BrowseCourses';
+import LandingPage from './components/LandingPage';
+import LoginChoice from './components/LoginChoice';
+import LoginForm from './components/LoginForm';
+import AboutUs from './components/AboutUs';
+import Profile from './components/Profile';
+import Course from './components/Course';
+import { Route } from 'react-router-dom'
+
+
 
 export default function RoutePage() {
     return (
         <div>
             <Route exact path="/" component={LandingPage} />
             <div className="container">
-                <Route exact path="/login" component={MainLoginPage} />
+                <Route exact path="/login" component={LoginChoice} />
+                <Route exact path="/signin" component={LoginForm} />
                 <Route exact path="/profile" component={Profile} />
                 <Route exact path="/browse" component={BrowseCourses} />
                 <Route exact path="/course" component={Course} />
