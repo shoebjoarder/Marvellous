@@ -36,10 +36,7 @@ export default class LoginForm extends React.Component {
 		}).catch((error) => {
 			console.log(error.response.request);
 		})
-
-
 	};
-
 
 	handleLogin = (e) => {
 		e.preventDefault();
@@ -60,7 +57,7 @@ export default class LoginForm extends React.Component {
 	render() {
 		return (
 			<Container>
-				<Row style={{ marginTop: "9.75em", marginBottom: '11.4em' }}>
+				<Row style={{ marginTop: "5.75em", marginBottom: '11.4em' }}>
 					<Col className="align-self-center" style={{ paddingBottom: '5em' }}>
 						<p style={{ fontSize: '3.5em' }}>Learn to think like a <u style={{ color: '#1E38BF' }}><strong>Programmer</strong></u></p>
 						<p style={{ fontSize: '1.5em' }}>All the courses are crafted with the principles of learning in mind</p>
