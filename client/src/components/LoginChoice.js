@@ -1,26 +1,18 @@
-import React, { Component } from 'react'
+import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Row, Image, Button } from "react-bootstrap";
 
 
-export default class LoginChoice extends Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			chooseEmail: false,
-			newUser: false,
-		}
+export default class LoginChoice extends React.Component {
+
+	handleJoin=(e)=>{
+		e.preventDefault();
+		this.props.history.push('/registration')
 	}
 
-	handleEmail = () => {
-		this.props.changeLogin(this.state.emailLogin);
-		console.log(this.state.chooseEmail);
-	}
-
-	handleNewUser = () => {
-		/* e.preventDefault(); */
-		this.props.changeUser(this.state.newUser);
-		console.log(this.state.newUser);
+	handleLogin=(e)=>{
+		e.preventDefault();
+		this.props.history.push('/signin')
 	}
 
 	render() {
@@ -34,15 +26,15 @@ export default class LoginChoice extends Component {
 						</Col>
 						<Col className="align-self-center" style={{ paddingLeft: '4em', paddingTop: '5em' }}>
 							<Row>
-								<Button href="/" size='lg' block variant="outline-dark" style={{ borderRadius: '0.7em', boxShadow: '2px 2px 4px #000000', fontSize: '2em' }}><Image src="images/github.png" style={{ height: '1em', width: 'auto', paddingRight: '0.2em', marginBottom: '0.25em' }} />Log in with Github</Button>
+								<Button href="/github" size='lg' block variant="outline-dark" style={{ borderRadius: '0.7em', boxShadow: '2px 2px 4px #000000', fontSize: '2em' }}><Image src="images/github.png" style={{ height: '1em', width: 'auto', paddingRight: '0.2em', marginBottom: '0.25em' }} />Log in with Github</Button>
 							</Row>
 							<br></br>
 							<Row>
-								<Button onClick={this.handleEmail} size='lg' block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '2em' }}>Log in with E-Mail</Button>
+								<Button onClick={this.handleLogin} size='lg' block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '2em' }}>Log in with E-Mail</Button>
 							</Row>
 							<Row>
 								<Col style={{ marginTop: '10em', textAlign: "center", verticalAlign: "middle" }}>
-								<Button onClick={this.handleNewUser} variant="outline-light" style={{ backgroundColor: '#F3F6FE', color:"black" }} >New user? <strong>Join Now!</strong></Button>
+									<Button onClick={this.handleJoin} variant="outline-light" style={{ backgroundColor: '#F3F6FE', color: "black" }} >New user? <strong>Join Now!</strong></Button>
 								</Col>
 							</Row>
 						</Col>
@@ -51,4 +43,6 @@ export default class LoginChoice extends Component {
 			</div>
 		)
 	}
+
 }
+
