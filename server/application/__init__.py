@@ -1,5 +1,6 @@
 from flask import Flask
 from .extensions import mongo
+from .extensions import jwt
 from .main import main
 
 def create_app(config_object="application.settings"):
@@ -10,5 +11,7 @@ def create_app(config_object="application.settings"):
     mongo.init_app(app)
 
     app.register_blueprint(main)
+
+    jwt.init_app(app)
 
     return app

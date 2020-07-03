@@ -17,25 +17,27 @@ export default class LoginForm extends React.Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		axios({
-			url: 'http://localhost:3000/loginEmail',
+			url: 'http://localhost:3000/signin',
 			method: 'POST',
 			data: {
 				"email": this.state.email,
 				"password": this.state.password
 			}
 		}).then((response) => {
-			// localStorage.setItem('usertoken', response.data.token)
+			localStorage.setItem('usertoken', response.data.token)
 			this.setState({
 				"result": response.data,
 			});
 			console.log(this.state.result);
+			if (this.state.result.token) {
+				this.props.history.push('/')
+			}
 			// return response.data
 		}).catch((error) => {
 			console.log(error.response.request);
 		})
-		if (!this.state.result.error) {
-			this.props.history.push('/')
-		}
+
+
 	};
 
 
@@ -77,7 +79,11 @@ export default class LoginForm extends React.Component {
 								<Form.Label>Password</Form.Label>
 								<Form.Control type="password" name="password" id="password" value={this.state.password} onChange={this.handleInputs} required ></Form.Control>
 							</Form.Group>
-							{this.state.result.login}
+
+							{/* Display error */}
+							{this.state.result.error}
+
+							<br></br>
 							<br></br>
 							<Button className="float-right" onClick={this.handleSubmit} style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '1.5em' }}>Login</Button>
 							<br></br>

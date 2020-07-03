@@ -19,7 +19,7 @@ def index():
     return '<h1>Added a user!</h1>'
 
 
-@main.route('/loginEmail', methods=['POST'])
+@main.route('/signin', methods=['POST'])
 def login():
 
     email = request.get_json()['email']
