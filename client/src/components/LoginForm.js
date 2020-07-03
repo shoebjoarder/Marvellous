@@ -14,8 +14,8 @@ export default class LoginForm extends React.Component {
 		}
 	}
 
-	handleSubmit = () => {
-		// e.preventDefault();
+	handleSubmit = (e) => {
+		e.preventDefault();
 		axios({
 			url: 'http://localhost:3000/loginEmail',
 			method: 'POST',
@@ -24,15 +24,30 @@ export default class LoginForm extends React.Component {
 				"password": this.state.password
 			}
 		}).then((response) => {
+			// localStorage.setItem('usertoken', response.data.token)
 			this.setState({
 				"result": response.data,
 			});
-			console.log(response.data.login);
+			console.log(this.state.result);
+			// return response.data
 		}).catch((error) => {
 			console.log(error.response.request);
 		})
-		// this.props.history.push('/')
+		if (!this.state.result.error) {
+			this.props.history.push('/')
+		}
 	};
+
+
+	handleLogin = (e) => {
+		e.preventDefault();
+		this.props.history.push('/login')
+	}
+
+	handleJoin = (e) => {
+		e.preventDefault();
+		this.props.history.push('/registration')
+	}
 
 	handleInputs = e => {
 		this.setState({
@@ -49,7 +64,7 @@ export default class LoginForm extends React.Component {
 						<p style={{ fontSize: '1.5em' }}>All the courses are crafted with the principles of learning in mind</p>
 					</Col>
 					<Col className="align-self-center" style={{ paddingLeft: '4em' }}>
-						<Button href="/login" variant="outline-light" style={{ backgroundColor: '#F3F6FE', color: "black" }} >&lt; Back to login</Button>
+						<Button onClick={this.handleLogin} variant="outline-light" style={{ backgroundColor: '#F3F6FE', color: "black" }} >&lt; Back to login</Button>
 
 						<Form style={{ border: "1px solid #000", padding: "50px 60px", backgroundColor: '#fff', borderRadius: '0.8em', marginTop: "3em" }}>
 
@@ -70,7 +85,7 @@ export default class LoginForm extends React.Component {
 						</Form>
 						<Row>
 							<Col style={{ marginTop: '3em', textAlign: "center", verticalAlign: "middle" }}>
-								<Button href="/registration" variant="outline-light" style={{ backgroundColor: '#F3F6FE', color: "black" }} >New user? <strong>Join Now!</strong></Button>
+								<Button onClick={this.handleJoin} variant="outline-light" style={{ backgroundColor: '#F3F6FE', color: "black" }} >New user? <strong>Join Now!</strong></Button>
 							</Col>
 						</Row>
 					</Col>

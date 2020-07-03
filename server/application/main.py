@@ -1,7 +1,12 @@
 from flask import Blueprint, Flask, request, jsonify, json
 from bson.json_util import dumps, RELAXED_JSON_OPTIONS
+from bson.objectid import ObjectId 
+from datetime import datetime 
+from flask_jwt_extended import create_access_token
 
 from .extensions import mongo
+from .extensions import bcrypt
+from .extensions import jwt
 
 main = Blueprint('main', __name__)
 
@@ -14,21 +19,27 @@ def index():
     return '<h1>Added a user!</h1>'
 
 
-@main.route('/login', methods=['POST'])
+@main.route('/loginEmail', methods=['POST'])
 def login():
 
     email = request.get_json()['email']
     password = request.get_json()['password']
 
     user_collection = mongo.db.users
-    query = user_collection.find_one({'email': email, 'password': password})
+    query = user_collection.find_one({'email': email})
 
     if query is None:
-        return jsonify({"login": "Incorrect credentials! Please check your email or password."})
-
-    else:
-        req = eval(dumps(query, json_options=RELAXED_JSON_OPTIONS))
-        return jsonify({"login": "success", "firstname": req['firstname'], "lastname": req["lastname"], "email": req["email"]})
+        return jsonify({"error": "Email not registered"})
+    elif query:
+        if bcrypt.check_password_hash(query['password'], password):
+            accessToken = create_access_token(identity={
+                'firstname': query['firstname'],
+                'lastname': query['lastname'],
+                'email': query['email'],
+            })
+            return jsonify({'token': accessToken})
+        else:
+            return jsonify({'error': 'Password does not match!'})
 
 
 @main.route('/registration', methods=['POST'])
@@ -37,20 +48,22 @@ def registration():
     lastname = request.get_json()['lastname']
     gender = request.get_json()['gender']
     email = request.get_json()['email']
-    password = request.get_json()['password']
-    cpassword = request.get_json()['cpassword']
+    passwordcheck = request.get_json()['password']
+    passwordcheckconfirm = request.get_json()['cpassword']
 
-    if password != cpassword:
-        return jsonify({"register": "Password doesn't match!"})
+    user_collection = mongo.db.users
+    query = user_collection.find_one({'email': email})
 
-    elif (any(x.isupper() for x in password) and any(x.islower() for x in password) and any(x.isdigit() for x in password) and len(password) > 5):
+    if passwordcheck != passwordcheckconfirm:
+        return jsonify({"error": "Password doesn't match!"})
+
+    elif query is not None:
+        return jsonify({'error': 'User already exist!'})
+
+    elif (any(x.isupper() for x in passwordcheck) and any(x.islower() for x in passwordcheck) and any(x.isdigit() for x in passwordcheck) and len(passwordcheck) > 5):
         user_collection = mongo.db.users
-        query = user_collection.insert(
-            {'firstname': firstname, 'lastname': lastname, 'gender': gender, 'email': email, 'password': password})
-
-        req = eval(dumps(query, json_options=RELAXED_JSON_OPTIONS))
-        return jsonify({"register": "registration complete"})
+        password = bcrypt.generate_password_hash(request.get_json()['password']).decode('utf-8')
+        user_collection.insert({'firstname': firstname, 'lastname': lastname, 'gender': gender, 'email': email, 'password': password})
+        return jsonify({"success": "registration complete"})
     else:
-         return jsonify({"register": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 6 characters"})
-
-# , "firstname": req["firstname"], "lastname": req['lastname'], "gender": req[gender], "email": req['email']
+         return jsonify({"error": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 6 characters"})
