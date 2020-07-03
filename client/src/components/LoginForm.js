@@ -28,11 +28,11 @@ export default class LoginForm extends React.Component {
 			this.setState({
 				"result": response.data,
 			});
+			// This needs to be removed later
 			console.log(this.state.result);
 			if (this.state.result.token) {
 				this.props.history.push('/')
 			}
-			// return response.data
 		}).catch((error) => {
 			console.log(error.response.request);
 		})
