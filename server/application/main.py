@@ -11,14 +11,7 @@ from .extensions import jwt
 main = Blueprint('main', __name__)
 
 
-@main.route('/')
-def index():
-    user_collection = mongo.db.users
-    user_collection.insert({'firstname': 'Shoeb', 'lastname': 'Joarder',
-                            'email': 'shoeb@gmail.com', 'password': 'qwer1234'})
-    return '<h1>Added a user!</h1>'
-
-
+# Login endpoint
 @main.route('/signin', methods=['POST'])
 def login():
 
@@ -35,6 +28,7 @@ def login():
             accessToken = create_access_token(identity={
                 'firstname': query['firstname'],
                 'lastname': query['lastname'],
+                'gender': query['gender'],
                 'email': query['email'],
             })
             return jsonify({'token': accessToken})
@@ -42,6 +36,7 @@ def login():
             return jsonify({'error': 'Password does not match!'})
 
 
+# Registration endpoint
 @main.route('/registration', methods=['POST'])
 def registration():
     firstname = request.get_json()['firstname']
