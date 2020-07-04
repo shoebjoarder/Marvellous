@@ -16,31 +16,42 @@ export default class RegistrationPage extends React.Component {
 			result: ""
 		}
 	}
-	submit = (e) => {
+
+	handleSubmit = (e) => {
 		e.preventDefault();
 		axios({
 			url: 'http://localhost:3000/registration',
 			method: 'POST',
 			data: {
-				"firstname": this.state.firstname,
-				"lastname": this.state.lastname,
-				"gender": this.state.gender,
-				"email": this.state.email,
-				"password": this.state.password,
-				"cpassword": this.state.cpassword
+				firstname: this.state.firstname,
+				lastname: this.state.lastname,
+				gender: this.state.gender,
+				email: this.state.email,
+				password: this.state.password,
+				cpassword: this.state.cpassword
 			}
 		}).then((response) => {
+			const data = response.data
 			this.setState({
-				"result": response.data,
+				result: data,
 			});
-			// console.log(response.data);
+			// This needs to be removed later
 			console.log(this.state.result)
+			if (this.state.result.success) {
+				this.setState ({
+					firstname: "",
+					lastname: "",
+					gender: "",
+					email: "",
+					password: "",
+					cpassword: "",
+					result: []
+				})
+				this.props.history.push('/signin')
+			}
 		}).catch((error) => {
 			console.log(error.response.request);
 		})
-		if (!this.state.result.error) {
-			this.props.history.push('/signin')
-		}
 	};
 
 	handleLogin=(e)=>{
@@ -103,7 +114,7 @@ export default class RegistrationPage extends React.Component {
 								{/* display if error exists */}
 								{this.state.result.error}
 								<br /><br />
-								<Button className="float-right" onClick={this.submit} style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '1.5em' }}>Confirm Sign Up</Button>
+								<Button className="float-right" onClick={this.handleSubmit} style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '1.5em' }}>Confirm Sign Up</Button>
 								<br></br>
 								<br></br>
 							</Form>

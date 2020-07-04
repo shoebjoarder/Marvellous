@@ -10,7 +10,7 @@ export default class LoginForm extends React.Component {
 		this.state = {
 			email: "",
 			password: "",
-			result: ""
+			result: []
 		}
 	}
 
@@ -20,17 +20,22 @@ export default class LoginForm extends React.Component {
 			url: 'http://localhost:3000/signin',
 			method: 'POST',
 			data: {
-				"email": this.state.email,
-				"password": this.state.password
+				email: this.state.email,
+				password: this.state.password
 			}
 		}).then((response) => {
-			localStorage.setItem('usertoken', response.data.token)
 			this.setState({
-				"result": response.data,
+				result: response.data,
 			});
 			// This needs to be removed later
 			console.log(this.state.result);
 			if (this.state.result.token) {
+				localStorage.setItem('usertoken', response.data.token)
+				this.setState ({
+					email: "",
+					password: "",
+					result: []
+				})
 				this.props.history.push('/')
 			}
 		}).catch((error) => {
