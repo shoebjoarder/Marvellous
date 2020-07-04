@@ -1,7 +1,7 @@
 from flask import Blueprint, Flask, request, jsonify, json
 from bson.json_util import dumps, RELAXED_JSON_OPTIONS
-from bson.objectid import ObjectId 
-from datetime import datetime 
+from bson.objectid import ObjectId
+from datetime import datetime
 from flask_jwt_extended import create_access_token
 
 from .extensions import mongo
@@ -30,6 +30,7 @@ def login():
                 'lastname': query['lastname'],
                 'gender': query['gender'],
                 'email': query['email'],
+                # 'courses': query['courses']
             })
             return jsonify({'token': accessToken})
         else:
@@ -57,8 +58,19 @@ def registration():
 
     elif (any(x.isupper() for x in passwordcheck) and any(x.islower() for x in passwordcheck) and any(x.isdigit() for x in passwordcheck) and len(passwordcheck) > 5):
         user_collection = mongo.db.users
-        password = bcrypt.generate_password_hash(request.get_json()['password']).decode('utf-8')
-        user_collection.insert({'firstname': firstname, 'lastname': lastname, 'gender': gender, 'email': email, 'password': password})
+        password = bcrypt.generate_password_hash(
+            request.get_json()['password']).decode('utf-8')
+        user_collection.insert({'firstname': firstname, 'lastname': lastname,
+                                'gender': gender, 'email': email, 'password': password})
         return jsonify({"success": "registration complete"})
     else:
-         return jsonify({"error": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 6 characters"})
+        return jsonify({"error": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 6 characters"})
+
+
+@main.route('/browse')
+def browseCourses():
+    users_collection = mongo.db.users
+    course_collection = mongo.db.courses
+    query = course_collection.find()
+    return dumps(query)
+

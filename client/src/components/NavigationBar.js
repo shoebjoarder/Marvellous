@@ -2,15 +2,10 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Nav, Navbar, Button, Image, Container } from "react-bootstrap"
 import { withRouter } from 'react-router-dom'
-import axios from 'axios'
+
 
 class NavigationBar extends React.Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			result: ""
-		}
-	}
+
 	handleSignOut = (e) => {
 		e.preventDefault();
 		localStorage.removeItem('usertoken')
@@ -26,22 +21,6 @@ class NavigationBar extends React.Component {
 	// this should call the backend and 
 	handleBrowse = (e) => {
 		e.preventDefault();
-		axios({
-			url: 'http://localhost:3000/browse',
-			method: 'POST'
-		}).then((response) => {
-			localStorage.setItem('browsetoken', response.data.token)
-			this.setState({
-				"result": response.data,
-			});
-			// This needs to be removed later
-			console.log(this.state.result);
-			if (this.state.result.token) {
-				this.props.history.push('/browse')
-			}
-		}).catch((error) => {
-			console.log(error.response.request);
-		})
 		this.props.history.push('/browse')
 	}
 
