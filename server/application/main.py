@@ -67,9 +67,8 @@ def registration():
         return jsonify({"error": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 6 characters"})
 
 
-@main.route('/browse')
+@main.route('/browse', methods=['GET'])
 def browseCourses():
-    users_collection = mongo.db.users
     course_collection = mongo.db.courses
     query = course_collection.find()
     return dumps(query)

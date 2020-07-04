@@ -15,12 +15,16 @@ export default class BrowseCourses extends React.Component {
 	}
 
 	componentDidMount = () => {
+		// this.setState({
+		// 	courses: []
+		// })
 		this.getCourses();
 	}
 
 	getCourses = () => {
 		axios({
-			url: 'http://localhost:3000/browse'
+			url: 'http://localhost:3000/browse',
+			method: 'GET'
 		}).then((response) => {
 			const data = response.data
 			this.setState({
@@ -34,7 +38,6 @@ export default class BrowseCourses extends React.Component {
 	}
 
 	displayCourses = (courses) => {
-
 		if (!courses.length) return null;
 
 		return courses.map((course, index) => (
@@ -51,8 +54,8 @@ export default class BrowseCourses extends React.Component {
 
 					<h1 style={{ fontSize: '4.5em' }}>Your Courses</h1>
 					<p style={{ color: '#8A8A8A', fontSize: '1.5em', paddingBottom: '1.5em' }}>Courses you recently worked on</p>
-					<CardDeck style={{ paddingBottom: '5em' }}><CourseCard />
-
+					<CardDeck style={{ paddingBottom: '5em' }}>
+						{/* <CourseCard /> */}
 					</CardDeck>
 
 					<hr></hr>
