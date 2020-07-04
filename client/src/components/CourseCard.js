@@ -4,18 +4,7 @@ import { Card } from "react-bootstrap"
 import { withRouter } from "react-router";
 
 
-/* TODO: 
-1. change to class
-2. create some states
-3. replace the title and text part in card with the access to newly created state 
-4. create a function to change the state */
 class CourseCard extends React.Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			result: []
-		}
-	}
 
 	handleClick = (course) => {
 		console.log(course)

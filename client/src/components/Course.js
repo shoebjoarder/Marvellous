@@ -4,17 +4,6 @@ import { Container, Col, Row, Card, Button } from "react-bootstrap"
 
 
 export default class Course extends React.Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			title: "",
-			desc_1: "",
-			desc_2: "",
-			quiz: "",
-			video: "",
-			difficult: ""
-		}
-	}
 
 	handleBrowse = (e) => {
 		e.preventDefault();
