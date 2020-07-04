@@ -10,7 +10,7 @@ export default class LoginForm extends React.Component {
 		this.state = {
 			email: "",
 			password: "",
-			result: ""
+			result: []
 		}
 	}
 
@@ -20,26 +20,28 @@ export default class LoginForm extends React.Component {
 			url: 'http://localhost:3000/signin',
 			method: 'POST',
 			data: {
-				"email": this.state.email,
-				"password": this.state.password
+				email: this.state.email,
+				password: this.state.password
 			}
 		}).then((response) => {
-			localStorage.setItem('usertoken', response.data.token)
 			this.setState({
-				"result": response.data,
+				result: response.data,
 			});
 			// This needs to be removed later
 			console.log(this.state.result);
 			if (this.state.result.token) {
+				localStorage.setItem('usertoken', response.data.token)
+				this.setState ({
+					email: "",
+					password: "",
+					result: []
+				})
 				this.props.history.push('/')
 			}
 		}).catch((error) => {
 			console.log(error.response.request);
 		})
-
-
 	};
-
 
 	handleLogin = (e) => {
 		e.preventDefault();
@@ -60,7 +62,7 @@ export default class LoginForm extends React.Component {
 	render() {
 		return (
 			<Container>
-				<Row style={{ marginTop: "9.75em", marginBottom: '11.4em' }}>
+				<Row style={{ marginTop: "5.75em", marginBottom: '11.4em' }}>
 					<Col className="align-self-center" style={{ paddingBottom: '5em' }}>
 						<p style={{ fontSize: '3.5em' }}>Learn to think like a <u style={{ color: '#1E38BF' }}><strong>Programmer</strong></u></p>
 						<p style={{ fontSize: '1.5em' }}>All the courses are crafted with the principles of learning in mind</p>

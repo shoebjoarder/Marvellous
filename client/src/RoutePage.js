@@ -10,7 +10,6 @@ import Course from './components/Course';
 import { Route } from 'react-router-dom'
 
 
-
 export default function RoutePage() {
     return (
         <div>
