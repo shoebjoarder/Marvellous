@@ -26,19 +26,25 @@ export default class Profile extends React.Component {
 		})
 	}
 
+	choosePicture = (gender) => {
+		if (gender === "Male") {
+			return "./images/userM.png"
+		} else if (gender === "Female") {
+			return "./images/userF.png"
+		}
+	}
 
 
 	render() {
-	
 		return (
 			<div>
 				<Container>
 					<Row style={{ marginTop: "5em", marginBottom: '21.2em' }}>
 						<Col className="col-md-4 text-center">
 
-							{/* TODO: Image, name, date of birth and email should be fetched from database */}
+							{/* TODO: date of birth should be fetched from database */}
 							
-							<Image src="/images/userM.png" className="img-fluid visible-lg-block" style={{ marginBottom: '1em' }} />
+							<Image src={this.choosePicture(this.state.gender)} className="img-fluid visible-lg-block" style={{ marginBottom: '1em' }} />
 
 							<p style={{ fontSize: '2.5em' }}>{this.state.firstname} {this.state.lastname}</p>
 

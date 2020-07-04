@@ -2,8 +2,9 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col, Row, Image, Container } from "react-bootstrap"
 
-export default function FooterBar() {
-	return (
+export default class FooterBar extends React.Component {
+	render() {
+			return (
 		<div className="fixed" style={{ backgroundColor: '#E5EAFF'}}>
 			<Container>
 				<Row className='justify-content-center'>
@@ -21,5 +22,7 @@ export default function FooterBar() {
 			</Container>
 		</div >
 	)
+	}
+
 }
 
