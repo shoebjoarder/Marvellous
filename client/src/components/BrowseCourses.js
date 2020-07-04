@@ -42,7 +42,7 @@ export default class BrowseCourses extends React.Component {
 
 		return courses.map((course, index) => (
 			<div key={index} >
-				<CourseCard title={course.title} desc={course.desc_1} />
+				<CourseCard course={course} />
 			</div>
 		));
 	}
