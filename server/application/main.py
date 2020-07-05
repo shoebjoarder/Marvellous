@@ -73,18 +73,33 @@ def browseCourses():
     query = course_collection.find()
     return dumps(query)
 
+
 @main.route('/findCourse', methods=['POST'])
-def findCourse():    
+def findCourse():
     title = request.get_json()['title']
     course_collection = mongo.db.courses
     query = course_collection.find_one({"title": title})
     return dumps(query)
 
 
+@main.route('/getEnrolled', methods=['POST'])
+def getEnrolled():
+    email = request.get_json()['email']
+    id = request.get_json()['id']
+    users_collection = mongo.db.users
+    myquery = {"email": email}
+    newvalues = {"$push": {"course": id}}
+    users_collection.update_many(myquery, newvalues)
+    return jsonify({"success": "Enroll complete"})
+
 # TODO: continue after creating getEnrolled endpoing
-# @main.route('/alreadyEnrolled', methods=['POST'])
-# def alreadyEnrolled():
-#     email = request.get_json()['email']
-#     oid = request.get_json()['oid']
-#     users_collection = mongo.db.users
-#     query = users_collection.find_one({'email': email, 'course': })
+@main.route('/alreadyEnrolled', methods=['POST'])
+def alreadyEnrolled():
+    email = request.get_json()['email']
+    id = request.get_json()['id']
+    users_collection = mongo.db.users
+    query = users_collection.find_one({'email': email, 'course':{"$in": [id]}})
+    if query is not None:
+        return jsonify({"success": "found an entry"})
+    else:
+        return jsonify({"fail": "entry not found"})

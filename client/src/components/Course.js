@@ -18,6 +18,7 @@ export default class Course extends React.Component {
 			difficulty: "",
 			image: "",
 			email: "",
+			result: "",
 			enrolled: false
 		}
 	}
@@ -26,8 +27,10 @@ export default class Course extends React.Component {
 		const decoded = jwt_decode(localStorage.usertoken);
 		const token = JSON.parse(localStorage.getItem("selectedCard"));
 		let image = ''
+		let ident = token['_id']['$oid']
+		let mail =  decoded.identity.email
 		this.setState({
-			id: token['_id'],
+			id: ident,
 			title: token['title'],
 			desc_1: token['desc_1'],
 			desc_2: token['desc_2'],
@@ -35,38 +38,84 @@ export default class Course extends React.Component {
 			video: token['video'],
 			difficulty: token['difficulty'],
 			image: image += '/' + token['image'],
-			email: decoded.identity.email
+			email: mail
 		});
+		console.log(ident)
+		this.getAlreadyEnrolled(ident, mail)
+
+	}
+
+	handleEnrollNow = (e) => {
+		e.preventDefault();
+		axios({
+			url: 'http://localhost:3000/getEnrolled',
+			method: 'POST',
+			data: {
+				email: this.state.email,
+				id: this.state.id
+			}
+		}).then((response) => {
+			this.setState({
+				result: response.data,
+			});
+			console.log(response.data)
+			if (response.data.success) {
+				this.setState({
+					enrolled: true
+				});
+			}
+		}).catch((error) => {
+			console.log(error.response.request);
+		})
 	}
 
 	// TODO: Whenever i mount this component, this should envoke componentdidmount and trigger a function to call if course exist in user details like in browsecourses.js
 
-	// getAlreadyEnrolled = () => {
-	// 	axios({
-	// 		url: 'http://localhost:3000/alreadyEnrolled',
-	// 		method: 'GET',
-	// 		data: {
-	// 			email: this.state.email,
-	// 			id: this.state.id
-	// 		}
-	// 	}).then((response) => {
-	// 		const data = response.data
-	// 		this.setState({
-	// 			enrolled: data
-	// 		});
-	// 		// This needs to be removed later
-	// 		console.log(this.state.courses);
-	// 	}).catch((error) => {
-	// 		console.log(error.response.request);
-	// 	})
-	// }
+	getAlreadyEnrolled = (ident, mail) => {
+		axios({
+			url: 'http://localhost:3000/alreadyEnrolled',
+			method: 'POST',
+			data: {
+				email: mail,
+				id: ident
+			}
+		}).then((response) => {
+			console.log(response.data)
+			if (response.data.success) {
+				this.setState({
+					enrolled: true
+				});
+			} else {
+				this.setState({
+					enrolled: false
+				});
+			}
+			// This needs to be removed later
+			console.log(this.state.enrolled);
+		}).catch((error) => {
+			console.log(error.response.request);
+		})
+	}
 
 	handleBrowse = (e) => {
 		e.preventDefault();
 		this.props.history.push('/browse')
 	}
 
+	handleToCourse = (e) => {
+		e.preventDefault();
+		this.props.history.push('/video')
+	}
+
 	render() {
+		const notEnrolled = (
+			<Button onClick={this.handleEnrollNow} size="lg" block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '1.5em' }}>Enroll now!</Button>
+		)
+
+		const Enrolled = (
+			<Button onClick={this.handleToCouse} size="lg" block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '1.5em' }}>Go to Course!</Button>
+		)
+		
 		return (
 			<div>
 				<Container style={{ marginTop: "5em", marginBottom: '10.2em' }}>
@@ -107,7 +156,7 @@ export default class Course extends React.Component {
 									</Card.Text>
 
 									{/* TODO: This button should change when the student is enrolled */}
-									<Button href="/" size="lg" block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '1.5em' }}>Enroll now!</Button>
+									{this.state.enrolled ? Enrolled : notEnrolled}
 									<br></br>
 								</Card.Body>
 							</Card>
