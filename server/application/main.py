@@ -119,9 +119,9 @@ def getYourCourses():
     course_collection = mongo.db.courses
     for i in range(len(query[0]['course'])):
         search = query[0]['course'][i]
-        courses.append(course_collection.find({'_id': ObjectId(search)}))
+        course = course_collection.find({'_id': ObjectId(search)})
+        courses += course
     
-    print(dumps(courses[0]))
-    # return jsonify({"success": "found an entry"}) 
-    if courses is not None:
-        return dumps(courses)
+    print(dumps(courses))
+    return dumps(courses)
+

@@ -20,7 +20,7 @@ class CourseCard extends React.Component {
 		image += '/' + this.props.course.image
 
 		return (
-			<Card tag="a" onClick={() => this.handleClick(course)} style={{ width: '250px', borderRadius: '0.8em', boxShadow: '2px 2px 4px #000000',  marginBottom: "1em", cursor: "pointer" }}>
+			<Card tag="a" onClick={() => this.handleClick(course)} style={{ width: '245px', borderRadius: '0.8em', boxShadow: '2px 2px 4px #000000',  marginBottom: "1em", cursor: "pointer" }}>
 				<Card.Img variant="top" className="mx-auto d-block" style={{ height: 'auto', width: '230px' }} src={image} />
 				<Card.Body>
 					<Card.Title>{titleCourse}</Card.Title> {/* this should be changed to this.props.title*/}
