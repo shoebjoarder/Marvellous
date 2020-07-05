@@ -1,7 +1,6 @@
 from flask import Blueprint, Flask, request, jsonify, json
 from bson.json_util import dumps, RELAXED_JSON_OPTIONS
 from bson.objectid import ObjectId
-from datetime import datetime
 from flask_jwt_extended import create_access_token
 
 from .extensions import mongo
@@ -67,7 +66,7 @@ def registration():
         return jsonify({"error": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 6 characters"})
 
 
-@main.route('/browse', methods=['GET'])
+@main.route('/getCourses', methods=['GET'])
 def browseCourses():
     course_collection = mongo.db.courses
     query = course_collection.find()
@@ -92,7 +91,7 @@ def getEnrolled():
     users_collection.update_many(myquery, newvalues)
     return jsonify({"success": "Enroll complete"})
 
-# TODO: continue after creating getEnrolled endpoing
+
 @main.route('/alreadyEnrolled', methods=['POST'])
 def alreadyEnrolled():
     email = request.get_json()['email']
@@ -103,3 +102,26 @@ def alreadyEnrolled():
         return jsonify({"success": "found an entry"})
     else:
         return jsonify({"fail": "entry not found"})
+
+
+@main.route('/getYourCourses', methods=['POST'])
+def getYourCourses():
+    email = request.get_json()['email']
+    users_collection = mongo.db.users
+    query = users_collection.find({'email': email}, {"course": 1, "_id": 0})
+    # query = dumps(query)
+    print(query[0])
+    # print(query[0]['course'][0])
+    # print(dumps(query[0]['course']))
+    # if query is not None:
+    #     return dumps(query[0]['courses']) 
+    courses = []
+    course_collection = mongo.db.courses
+    for i in range(len(query[0]['course'])):
+        search = query[0]['course'][i]
+        courses.append(course_collection.find({'_id': ObjectId(search)}))
+    
+    print(dumps(courses[0]))
+    # return jsonify({"success": "found an entry"}) 
+    if courses is not None:
+        return dumps(courses)

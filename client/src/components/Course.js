@@ -69,8 +69,6 @@ export default class Course extends React.Component {
 		})
 	}
 
-	// TODO: Whenever i mount this component, this should envoke componentdidmount and trigger a function to call if course exist in user details like in browsecourses.js
-
 	getAlreadyEnrolled = (ident, mail) => {
 		axios({
 			url: 'http://localhost:3000/alreadyEnrolled',
