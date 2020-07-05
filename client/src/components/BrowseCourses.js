@@ -56,16 +56,6 @@ export default class BrowseCourses extends React.Component {
 			console.log(error.response.request);
 		})
 	}
-		
-	displayYourCourses = (yourCourses) => {
-		if (!yourCourses.length) return null;
-
-		return yourCourses.map((course, index) => (
-			<div key={index} >
-				<CourseCard course={course} />
-			</div>
-		));
-	}
 
 	displayCourses = (courses) => {
 		if (!courses.length) return null;
@@ -85,7 +75,7 @@ export default class BrowseCourses extends React.Component {
 					<h1 style={{ fontSize: '4.5em' }}>Your Courses</h1>
 					<p style={{ color: '#8A8A8A', fontSize: '1.5em', paddingBottom: '1.5em' }}>Courses you recently worked on</p>
 					<CardDeck style={{ paddingBottom: '5em' }}>
-						{this.displayYourCourses(this.state.yourCourses)}
+						{this.displayCourses(this.state.yourCourses)}
 					</CardDeck>
 
 					<hr></hr>

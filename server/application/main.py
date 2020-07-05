@@ -91,6 +91,16 @@ def getEnrolled():
     users_collection.update_many(myquery, newvalues)
     return jsonify({"success": "Enroll complete"})
 
+@main.route('/getUnenrolled', methods=['POST'])
+def getUnenrolled():
+    email = request.get_json()['email']
+    id = request.get_json()['id']
+    users_collection = mongo.db.users
+    myquery = {"email": email}
+    newvalues = {"$pull": {"course": id}}
+    users_collection.update_many(myquery, newvalues)
+    return jsonify({"success": "Enroll complete"})
+
 
 @main.route('/alreadyEnrolled', methods=['POST'])
 def alreadyEnrolled():
@@ -109,19 +119,11 @@ def getYourCourses():
     email = request.get_json()['email']
     users_collection = mongo.db.users
     query = users_collection.find({'email': email}, {"course": 1, "_id": 0})
-    # query = dumps(query)
-    print(query[0])
-    # print(query[0]['course'][0])
-    # print(dumps(query[0]['course']))
-    # if query is not None:
-    #     return dumps(query[0]['courses']) 
     courses = []
     course_collection = mongo.db.courses
     for i in range(len(query[0]['course'])):
         search = query[0]['course'][i]
         course = course_collection.find({'_id': ObjectId(search)})
         courses += course
-    
-    print(dumps(courses))
     return dumps(courses)
 

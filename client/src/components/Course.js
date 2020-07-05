@@ -69,6 +69,30 @@ export default class Course extends React.Component {
 		})
 	}
 
+	handleUnenrollNow = (e) => {
+		e.preventDefault();
+		axios({
+			url: 'http://localhost:3000/getUnenrolled',
+			method: 'POST',
+			data: {
+				email: this.state.email,
+				id: this.state.id
+			}
+		}).then((response) => {
+			this.setState({
+				result: response.data,
+			});
+			console.log(response.data)
+			if (response.data.success) {
+				this.setState({
+					enrolled: false
+				});
+			}
+		}).catch((error) => {
+			console.log(error.response.request);
+		})
+	}
+
 	getAlreadyEnrolled = (ident, mail) => {
 		axios({
 			url: 'http://localhost:3000/alreadyEnrolled',
@@ -106,12 +130,16 @@ export default class Course extends React.Component {
 	}
 
 	render() {
-		const notEnrolled = (
+		const NotEnrolled = (
 			<Button onClick={this.handleEnrollNow} size="lg" block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '1.5em' }}>Enroll now!</Button>
 		)
 
 		const Enrolled = (
-			<Button onClick={this.handleToCouse} size="lg" block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '1.5em' }}>Go to Course!</Button>
+			<Button onClick={this.handleUnenrollNow} size="lg" block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '1.5em' }}>Unenroll now!</Button>
+		)
+
+		const ToCourse = (
+			<Button onClick={this.handleToCourse} size="lg" block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '1.5em', width: '8em' }}>Go to course!</Button>
 		)
 		
 		return (
@@ -126,6 +154,7 @@ export default class Course extends React.Component {
 							<p style={{ fontSize: '1.7em', marginBottom: '1em' }}>{this.state.desc_1}</p>
 							<p style={{ fontSize: '1.2em', color: '#8A8A8A' }}>{this.state.desc_2}</p>
 							<br />
+							{this.state.enrolled ? ToCourse : null}
 						</Col>
 
 						{/* Card */}
@@ -154,7 +183,7 @@ export default class Course extends React.Component {
 									</Card.Text>
 
 									{/* TODO: This button should change when the student is enrolled */}
-									{this.state.enrolled ? Enrolled : notEnrolled}
+									{this.state.enrolled ? Enrolled : NotEnrolled}
 									<br></br>
 								</Card.Body>
 							</Card>
