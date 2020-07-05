@@ -1,19 +1,72 @@
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Row, Card, Button } from "react-bootstrap"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios'
+import jwt_decode from 'jwt-decode'
 
 
 export default class Course extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			id: "",
+			title: "",
+			desc_1: "",
+			desc_2: "",
+			quiz: "",
+			video: "",
+			difficulty: "",
+			image: "",
+			email: "",
+			enrolled: false
+		}
+	}
+
+	componentDidMount() {
+		const decoded = jwt_decode(localStorage.usertoken);
+		const token = JSON.parse(localStorage.getItem("selectedCard"));
+		let image = ''
+		this.setState({
+			id: token['_id'],
+			title: token['title'],
+			desc_1: token['desc_1'],
+			desc_2: token['desc_2'],
+			quiz: token['quiz'],
+			video: token['video'],
+			difficulty: token['difficulty'],
+			image: image += '/' + token['image'],
+			email: decoded.identity.email
+		});
+	}
+
+	// TODO: Whenever i mount this component, this should envoke componentdidmount and trigger a function to call if course exist in user details like in browsecourses.js
+
+	// getAlreadyEnrolled = () => {
+	// 	axios({
+	// 		url: 'http://localhost:3000/alreadyEnrolled',
+	// 		method: 'GET',
+	// 		data: {
+	// 			email: this.state.email,
+	// 			id: this.state.id
+	// 		}
+	// 	}).then((response) => {
+	// 		const data = response.data
+	// 		this.setState({
+	// 			enrolled: data
+	// 		});
+	// 		// This needs to be removed later
+	// 		console.log(this.state.courses);
+	// 	}).catch((error) => {
+	// 		console.log(error.response.request);
+	// 	})
+	// }
 
 	handleBrowse = (e) => {
 		e.preventDefault();
 		this.props.history.push('/browse')
 	}
+
 	render() {
-		const token = JSON.parse(localStorage.getItem("selectedCard"))
-		console.log(token)
-		let image = ""
-		image += '/' + token['image']
 		return (
 			<div>
 				<Container style={{ marginTop: "5em", marginBottom: '10.2em' }}>
@@ -21,9 +74,10 @@ export default class Course extends React.Component {
 					{/* Course Description */}
 					<Row style={{ marginTop: "1em" }}>
 						<Col className="align-self-center col-md-8" >
-							<p style={{ fontSize: '4em', marginBottom: '1em' }}>{token["title"]}</p>
-							<p style={{ fontSize: '1.7em', marginBottom: '1em' }}>{token["desc_1"]}</p>
-							<p style={{ fontSize: '1.2em', color: '#8A8A8A' }}>{token["desc_2"]}</p>
+							<p style={{ fontSize: '4em' }}>{this.state.title}</p>
+							<p style={{ fontSize: '1.7em', marginBottom: '1em', color: "#8A8A8A" }}>Level: {this.state.difficulty}</p>
+							<p style={{ fontSize: '1.7em', marginBottom: '1em' }}>{this.state.desc_1}</p>
+							<p style={{ fontSize: '1.2em', color: '#8A8A8A' }}>{this.state.desc_2}</p>
 							<br />
 						</Col>
 
@@ -32,7 +86,7 @@ export default class Course extends React.Component {
 							<Card style={{ width: '300px', borderRadius: '0.8em', boxShadow: '2px 2px 4px #000000' }}>
 
 								{/* TODO: Image will change dynamically */}
-								<Card.Img variant="top" className="mx-auto d-block" style={{ height: '230px', width: '230px' }} src={image} />
+								<Card.Img variant="top" className="mx-auto d-block" style={{ height: '230px', width: '230px' }} src={this.state.image} />
 
 								<Card.Body style={{ padding: '1.5em' }}>
 									<Card.Text style={{ fontSize: '1.4em', paddingBottom: '1.2em' }}>
@@ -40,13 +94,13 @@ export default class Course extends React.Component {
 											<Col>
 
 												{/* TODO: Values will change dynamically */}
-												<strong style={{ color: 'black' }}>{token["quiz"]}</strong><br />
+												<strong style={{ color: 'black' }}>{this.state.quiz}</strong><br />
 											Quizzes
 										</Col>
 											<Col className="float-right">
 
 												{/* TODO: Values will change dynamically */}
-												<strong style={{ color: 'black' }}>{token["video"]}</strong><br />
+												<strong style={{ color: 'black' }}>{this.state.video}</strong><br />
 											Videos
 										</Col>
 										</Row>

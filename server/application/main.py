@@ -79,3 +79,12 @@ def findCourse():
     course_collection = mongo.db.courses
     query = course_collection.find_one({"title": title})
     return dumps(query)
+
+
+# TODO: continue after creating getEnrolled endpoing
+# @main.route('/alreadyEnrolled', methods=['POST'])
+# def alreadyEnrolled():
+#     email = request.get_json()['email']
+#     oid = request.get_json()['oid']
+#     users_collection = mongo.db.users
+#     query = users_collection.find_one({'email': email, 'course': })
