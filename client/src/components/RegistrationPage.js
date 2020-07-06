@@ -93,6 +93,7 @@ export default class RegistrationPage extends React.Component {
 										<option></option>
 										<option>Male</option>
 										<option>Female</option>
+										<option>Not specified</option>
 									</Form.Control>
 								</Form.Group>
 
