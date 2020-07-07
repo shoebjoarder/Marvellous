@@ -75,7 +75,7 @@ export default class RegistrationPage extends React.Component {
 							<p style={{ fontSize: '3.32em' }}>Join now and become <u style={{ color: '#1E38BF' }}><strong>Marvellous!</strong></u></p>
 						</Col>
 						<Col className="align-self-center md-6" style={{ paddingLeft: '4em', paddingTop: '5em' }}>
-							<Form style={{ border: "1px solid #000", padding: "50px 60px", backgroundColor: '#fff', borderRadius: '0.8em' }}>
+							<Form style={{ border: "1px solid #fff", padding: "50px 60px", backgroundColor: '#fff', borderRadius: '0.8em', WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)",  boxShadow: '0px 0px 20px -1px rgba(0,0,0,0.75)' }}>
 
 								<Form.Group controlId="formFirstName">
 									<Form.Label>Firstname</Form.Label>

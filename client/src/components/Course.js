@@ -159,7 +159,7 @@ export default class Course extends React.Component {
 
 						{/* Card */}
 						<Col className="d-none d-md-block col-md-4" style={{ padding: '4em 2em' }}>
-							<Card style={{ width: '300px', borderRadius: '0.8em', boxShadow: '2px 2px 4px #000000' }}>
+							<Card style={{ width: '300px', borderRadius: '0.8em', WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)",  boxShadow: '0px 0px 20px -1px rgba(0,0,0,0.75)' }}>
 
 								{/* TODO: Image will change dynamically */}
 								<Card.Img variant="top" className="mx-auto d-block" style={{ height: '230px', width: '230px' }} src={this.state.image} />

@@ -31,7 +31,7 @@ export default class LoginForm extends React.Component {
 			console.log(this.state.result);
 			if (this.state.result.token) {
 				localStorage.setItem('usertoken', response.data.token)
-				this.setState ({
+				this.setState({
 					email: "",
 					password: "",
 					result: []
@@ -70,7 +70,7 @@ export default class LoginForm extends React.Component {
 					<Col className="align-self-center" style={{ paddingLeft: '4em' }}>
 						<Button onClick={this.handleLogin} variant="outline-light" style={{ backgroundColor: '#F3F6FE', color: "black" }} >&lt; Back to login</Button>
 
-						<Form style={{ border: "1px solid #000", padding: "50px 60px", backgroundColor: '#fff', borderRadius: '0.8em', marginTop: "3em" }}>
+						<Form style={{ border: "1px solid #fff", padding: "50px 60px", backgroundColor: '#fff', borderRadius: '0.8em', marginTop: "3em", WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 20px -1px rgba(0,0,0,0.75)' }}>
 
 							<Form.Group controlId="formEmail">
 								<Form.Label>Email</Form.Label>
