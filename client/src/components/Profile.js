@@ -128,7 +128,7 @@ export default class Profile extends React.Component {
 
 							{/* TODO: date of birth should be fetched from database */}
 
-							<Image src="./images/no-video.jpg" className="img-fluid visible-lg-block" style={{ marginBottom: '1em' }} />
+							<Image src={this.choosePicture(this.state.gender)} className="img-fluid visible-lg-block" style={{ marginBottom: '1em' }} />
 
 							<p style={{ fontSize: '2.5em' }}>{this.state.firstname} {this.state.lastname}</p>
 
