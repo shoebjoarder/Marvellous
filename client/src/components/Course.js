@@ -14,7 +14,7 @@ export default class Course extends React.Component {
 			desc_1: "",
 			desc_2: "",
 			quiz: "",
-			video: "",
+			number: "",
 			difficulty: "",
 			image: "",
 			email: "",
@@ -35,7 +35,7 @@ export default class Course extends React.Component {
 			desc_1: token['desc_1'],
 			desc_2: token['desc_2'],
 			quiz: token['quiz'],
-			video: token['video'],
+			number: token['number'],
 			difficulty: token['difficulty'],
 			image: image += '/' + token['image'],
 			email: mail
@@ -176,7 +176,7 @@ export default class Course extends React.Component {
 											<Col className="float-right">
 
 												{/* TODO: Values will change dynamically */}
-												<strong style={{ color: 'black' }}>{this.state.video}</strong><br />
+												<strong style={{ color: 'black' }}>{this.state.number}</strong><br />
 											Videos
 										</Col>
 										</Row>

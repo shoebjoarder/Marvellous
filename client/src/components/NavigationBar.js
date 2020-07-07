@@ -8,7 +8,8 @@ class NavigationBar extends React.Component {
 
 	handleSignOut = (e) => {
 		e.preventDefault();
-		localStorage.removeItem('usertoken')
+		localStorage.clear();
+		// localStorage.removeItem('usertoken')
 		// TODO: also needs the browsetoken to be removed
 		this.props.history.push('/')
 	}
