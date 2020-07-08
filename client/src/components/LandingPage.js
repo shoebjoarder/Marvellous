@@ -17,7 +17,7 @@ export default class LandingPage extends React.Component {
 	handleJoin = (e) => {
 		e.preventDefault();
 		this.props.history.push('/registration')
-	} 
+	}
 
 	componentDidMount() {
 		if (localStorage.usertoken) {
@@ -32,7 +32,7 @@ export default class LandingPage extends React.Component {
 
 	render() {
 		const notLoggedIn = (
-			<Button onClick={this.handleJoin} style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '2em', paddingLeft: "0.8em", paddingRight: '0.8em' }}>Join Now!</Button>
+			<Button onClick={this.handleJoin} style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 5px -1px rgba(0,0,0,0.75)', fontSize: '2em', paddingLeft: "0.8em", paddingRight: '0.8em' }}>Join Now!</Button>
 		)
 
 		const LoggedIn = (

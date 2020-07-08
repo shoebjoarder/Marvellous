@@ -13,7 +13,9 @@ export default class FooterBar extends React.Component {
 							<Image src="images/nxgenLogo.png" style={{ height: '1.3em', width: 'auto', paddingRight: '0.3em', marginBottom: '0.1em' }} />About Us</a>
 					</Col>
 					<Col className="col-sm-4 align-self-end order-sm-2" style={{ marginTop: '1.5em', textAlign: 'right'}}>
-						<a href="https://github.com/shoebjoarder/awt-marvellous" target="_blank" style={{ fontSize: '1.7em', color: 'black' }}>
+						<a href="https://github.com/shoebjoarder/awt-marvellous" 
+						// target="_blank" 
+						style={{ fontSize: '1.7em', color: 'black' }}>
 							Follow us at 	<Image src="images/github.png" style={{ height: '1em', width: 'auto', paddingRight: '0.15em', marginBottom: '0.3em' }} />Github
 						</a>
 					</Col>
