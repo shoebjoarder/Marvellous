@@ -57,7 +57,7 @@ export default class Profile extends React.Component {
 					zipcode: response.data.address.zipcode
 				});
 			}
-			else if (response.data.error) { 
+			else if (response.data.error) {
 				this.setState({
 					result: response.data.error
 				});
@@ -81,20 +81,28 @@ export default class Profile extends React.Component {
 				street: this.state.street,
 				city: this.state.city,
 				province: this.state.province,
-				zipcode: this.state.zipcode
+				zipcode: this.state.zipcode,
+				password: this.state.password,
+				cpassword: this.state.cpassword
 			}
 		}).then((response) => {
 			this.setState({
-				firstname: this.state.firstname,
-				lastname: this.state.lastname,
-				email: this.state.email,
-				street: this.state.street,
-				city: this.state.city,
-				province: this.state.province,
-				zipcode: this.state.zipcode,
-				result: response.data,
-				showProgress: true
-			});
+				result: response.data
+			})
+			if (this.state.result.success) {
+				this.setState({
+					firstname: this.state.firstname,
+					lastname: this.state.lastname,
+					email: this.state.email,
+					street: this.state.street,
+					city: this.state.city,
+					province: this.state.province,
+					zipcode: this.state.zipcode,
+					password: "",
+					cpassword: "",
+					showProgress: true
+				});
+			}
 			// This needs to be removed later
 			console.log(response.data)
 			console.log(this.state.result);
@@ -132,7 +140,7 @@ export default class Profile extends React.Component {
 	render() {
 		const EditProfile = (
 			<Col className="align-self-center" style={{ paddingLeft: '4em' }}>
-				<p style={{ fontSize: '3em'}}>Change your details</p>
+				<p style={{ fontSize: '3em' }}>Change your details</p>
 				<br></br>
 				<Form>
 					<Form.Row>
@@ -140,7 +148,7 @@ export default class Profile extends React.Component {
 							<Form.Label>Firstname</Form.Label>
 							<Form.Control type="text" name="firstname" id="firstname" placeholder="e.g. Jon" value={this.state.firstname} onChange={this.handleInputs} required />
 							<Form.Control.Feedback type="invalid">
-              Please choose your Firstname.
+								Please choose your Firstname.
             </Form.Control.Feedback>
 						</Form.Group>
 
@@ -202,11 +210,15 @@ export default class Profile extends React.Component {
 							<Form.Control type="password" name="cpassword" id="cpassword" value={this.state.cpassword} onChange={this.handleInputs} />
 						</Form.Group>
 					</Form.Row>
+
+					{/* display if error exists */}
+					{this.state.result.error}
+
 					<div className={"row justify-content-end"} style={{ marginTop: '1.5em', marginRight: '0.6em' }}>
-					<Button onClick={this.setUserDetails} size="lg" block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '1.3em', width: '9.5em' }}>Confirm changes</Button>
+						<Button onClick={this.setUserDetails} size="lg" block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '1.3em', width: '9.5em' }}>Confirm changes</Button>
 					</div>
 				</Form>
-			<br></br>
+				<br></br>
 
 			</Col >
 		)
