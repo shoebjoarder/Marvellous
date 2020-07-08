@@ -130,6 +130,13 @@ export default class Profile extends React.Component {
 	}
 
 
+	handleToProgress = () => {
+		this.setState({
+			showProgress: true
+		})
+	}
+
+
 	handleInputs = (e) => {
 		this.setState({
 			[e.target.name]: e.target.value
@@ -215,11 +222,10 @@ export default class Profile extends React.Component {
 					{this.state.result.error}
 
 					<div className={"row justify-content-end"} style={{ marginTop: '1.5em', marginRight: '0.6em' }}>
-						<Button onClick={this.setUserDetails} size="lg" block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '1.3em', width: '9.5em' }}>Confirm changes</Button>
+						<Button onClick={this.setUserDetails} size="lg" block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 5px -1px rgba(0,0,0,0.75)', fontSize: '1.3em', width: '9.5em' }}>Confirm changes</Button>
 					</div>
 				</Form>
 				<br></br>
-
 			</Col >
 		)
 
@@ -229,6 +235,27 @@ export default class Profile extends React.Component {
 				{/* TODO: These will be the plots from Dash */}
 				<LineChart />
 			</Col >
+		)
+
+		const EditProfileButton = (
+			<Button onClick={this.handleEditProfile} variant="outline-light" style={{ fontSize: '1em', backgroundColor: '#F3F6FE', color: "black" }} >
+				<Image src="images/edit.png" className="img-fluid visible-lg-block" style={{ marginBottom: '0.3em', height: '1.5em' }} />
+				<strong style={{ color: "black", paddingLeft: "0.2em" }}>
+					Edit Profile
+								</strong>
+			</Button>
+		)
+
+		const BackToProgressButton = (
+			<Button onClick={this.handleToProgress} variant="outline-light" style={{ fontSize: '1em', backgroundColor: '#F3F6FE', color: "black" }} >
+				<Image src="images/barchart.png" className="img-fluid visible-lg-block" style={{ marginBottom: '0.5em', height: '1.5em' }} />
+				<strong style={{ color: "black", paddingLeft: "0.2em" }}>
+					Back to Progress
+							</strong>
+			</Button>
+
+			// <Button onClick={this.handleToProgress} variant="outline-light" style={{ fontSize: '1.3em', backgroundColor: '#F3F6FE', color: "#8A8A8A" }} >&lt; Back to Progress</Button>
+
 		)
 
 
@@ -244,12 +271,8 @@ export default class Profile extends React.Component {
 
 							<p>E-mail: {this.state.email} </p>
 
-							<Button onClick={this.handleEditProfile} variant="outline-light" style={{ fontSize: '1em', backgroundColor: '#F3F6FE', color: "black" }} >
-								<Image src="images/edit.png" className="img-fluid visible-lg-block" style={{ marginBottom: '0.3em', height: '1.5em' }} />
-								<strong style={{ color: "black", paddingLeft: "0.2em" }}>
-									Edit Profile
-								</strong>
-							</Button>
+
+							{this.state.showProgress ? EditProfileButton : BackToProgressButton}
 
 						</Col>
 
