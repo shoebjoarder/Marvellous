@@ -5,12 +5,12 @@ import { Container, Col, Row, Image, Button } from "react-bootstrap";
 
 export default class LoginChoice extends React.Component {
 
-	handleJoin=(e)=>{
+	handleJoin = (e) => {
 		e.preventDefault();
 		this.props.history.push('/registration')
 	}
 
-	handleLogin=(e)=>{
+	handleLogin = (e) => {
 		e.preventDefault();
 		this.props.history.push('/signin')
 	}
@@ -30,7 +30,7 @@ export default class LoginChoice extends React.Component {
 							</Row>
 							<br></br>
 							<Row>
-								<Button onClick={this.handleLogin} size='lg' block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '2em' }}>Log in with E-Mail</Button>
+								<Button onClick={this.handleLogin} size='lg' block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 5px -1px rgba(0,0,0,0.75)', fontSize: '2em' }}>Log in with E-Mail</Button>
 							</Row>
 							<Row>
 								<Col style={{ marginTop: '10em', textAlign: "center", verticalAlign: "middle" }}>

@@ -66,6 +66,37 @@ def registration():
         return jsonify({"error": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 6 characters"})
 
 
+@main.route('/setUserDetails', methods=['POST'])
+def setUserDetails():
+    firstname = request.get_json()['firstname']
+    lastname = request.get_json()['lastname']
+    email = request.get_json()['email']
+    street = request.get_json()['street']
+    city = request.get_json()['city']
+    province = request.get_json()['province']
+    zipcode = request.get_json()['zipcode']
+
+    users_collection = mongo.db.users
+
+    newvalues = {'$set': {'firstname': firstname, 'lastname': lastname, 'address': { 'street': street, 'city': city, 'province': province, 'zipcode': zipcode}}}
+
+    users_collection.find_one_and_update({"email": email}, newvalues)
+
+    return jsonify({"success": "Update complete"})
+
+
+@main.route('/getUserAddress', methods=['POST'])
+def getUserAddress():
+    email = request.get_json()['email']
+    users_collection = mongo.db.users
+    query = users_collection.find_one(
+        {"email": email}, {"address": 1, "_id": 0})
+    if query == {}:
+        return jsonify({'error': 'No address found'})
+    else:
+        return dumps(query)
+
+
 @main.route('/getCourses', methods=['GET'])
 def browseCourses():
     course_collection = mongo.db.courses
@@ -92,12 +123,24 @@ def getEnrolled():
     return jsonify({"success": "Enroll complete"})
 
 
+@main.route('/getUnenrolled', methods=['POST'])
+def getUnenrolled():
+    email = request.get_json()['email']
+    id = request.get_json()['id']
+    users_collection = mongo.db.users
+    myquery = {"email": email}
+    newvalues = {"$pull": {"course": id}}
+    users_collection.update_many(myquery, newvalues)
+    return jsonify({"success": "Enroll complete"})
+
+
 @main.route('/alreadyEnrolled', methods=['POST'])
 def alreadyEnrolled():
     email = request.get_json()['email']
     id = request.get_json()['id']
     users_collection = mongo.db.users
-    query = users_collection.find_one({'email': email, 'course':{"$in": [id]}})
+    query = users_collection.find_one(
+        {'email': email, 'course': {"$in": [id]}})
     if query is not None:
         return jsonify({"success": "found an entry"})
     else:
@@ -109,19 +152,10 @@ def getYourCourses():
     email = request.get_json()['email']
     users_collection = mongo.db.users
     query = users_collection.find({'email': email}, {"course": 1, "_id": 0})
-    # query = dumps(query)
-    print(query[0])
-    # print(query[0]['course'][0])
-    # print(dumps(query[0]['course']))
-    # if query is not None:
-    #     return dumps(query[0]['courses']) 
     courses = []
     course_collection = mongo.db.courses
     for i in range(len(query[0]['course'])):
         search = query[0]['course'][i]
         course = course_collection.find({'_id': ObjectId(search)})
         courses += course
-    
-    print(dumps(courses))
     return dumps(courses)
-

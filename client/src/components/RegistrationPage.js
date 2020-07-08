@@ -38,7 +38,7 @@ export default class RegistrationPage extends React.Component {
 			// This needs to be removed later
 			console.log(this.state.result)
 			if (this.state.result.success) {
-				this.setState ({
+				this.setState({
 					firstname: "",
 					lastname: "",
 					gender: "",
@@ -54,7 +54,7 @@ export default class RegistrationPage extends React.Component {
 		})
 	};
 
-	handleLogin=(e)=>{
+	handleLogin = (e) => {
 		e.preventDefault();
 		this.props.history.push('/login')
 	}
@@ -75,30 +75,31 @@ export default class RegistrationPage extends React.Component {
 							<p style={{ fontSize: '3.32em' }}>Join now and become <u style={{ color: '#1E38BF' }}><strong>Marvellous!</strong></u></p>
 						</Col>
 						<Col className="align-self-center md-6" style={{ paddingLeft: '4em', paddingTop: '5em' }}>
-							<Form style={{ border: "1px solid #000", padding: "50px 60px", backgroundColor: '#fff', borderRadius: '0.8em' }}>
+							<Form style={{ border: "1px solid #fff", padding: "50px 60px", backgroundColor: '#fff', borderRadius: '0.8em', WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 20px -1px rgba(0,0,0,0.75)' }}>
 
 								<Form.Group controlId="formFirstName">
 									<Form.Label>Firstname</Form.Label>
-									<Form.Control type="text" name="firstname" id="firstname" placeholder="e.g. Jon" value={this.state.firstname} onChange={this.handleInputs} />
+									<Form.Control type="text" name="firstname" id="firstname" placeholder="e.g. Jon" value={this.state.firstname} onChange={this.handleInputs} required />
 								</Form.Group>
 
 								<Form.Group controlId="formLastName">
 									<Form.Label>Lastname</Form.Label>
-									<Form.Control type="text" name="lastname" id="lastname" placeholder="e.g. Doe" value={this.state.lastname} onChange={this.handleInputs} />
+									<Form.Control type="text" name="lastname" id="lastname" placeholder="e.g. Doe" value={this.state.lastname} onChange={this.handleInputs} required />
 								</Form.Group>
 
 								<Form.Group controlId="exampleForm.ControlSelect1">
 									<Form.Label>Gender</Form.Label>
-									<Form.Control as="select" name="gender" id="gender" value={this.state.gender} onChange={this.handleInputs}>
+									<Form.Control as="select" name="gender" id="gender" defaultValue="Choose..." value={this.state.gender} onChange={this.handleInputs} required>
 										<option></option>
 										<option>Male</option>
 										<option>Female</option>
+										<option>Not specified</option>
 									</Form.Control>
 								</Form.Group>
 
 								<Form.Group controlId="formEmail">
 									<Form.Label>Email</Form.Label>
-									<Form.Control type="email" name="email" id="email" placeholder="jon.doe@example.com" value={this.state.email} onChange={this.handleInputs} />
+									<Form.Control type="email" name="email" id="email" placeholder="jon.doe@example.com" value={this.state.email} onChange={this.handleInputs} required />
 								</Form.Group>
 
 								<Form.Group controlId="formInputPassword">
@@ -114,7 +115,7 @@ export default class RegistrationPage extends React.Component {
 								{/* display if error exists */}
 								{this.state.result.error}
 								<br /><br />
-								<Button className="float-right" onClick={this.handleSubmit} style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '1.5em' }}>Confirm Sign Up</Button>
+								<Button className="float-right" onClick={this.handleSubmit} style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 5px -1px rgba(0,0,0,0.75)', fontSize: '1.5em' }}>Confirm Sign Up</Button>
 								<br></br>
 								<br></br>
 							</Form>
