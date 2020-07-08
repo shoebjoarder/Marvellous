@@ -75,14 +75,34 @@ def setUserDetails():
     city = request.get_json()['city']
     province = request.get_json()['province']
     zipcode = request.get_json()['zipcode']
+    passwordcheck = request.get_json()['password']
+    passwordcheckconfirm = request.get_json()['cpassword']
 
-    users_collection = mongo.db.users
+    if passwordcheck != passwordcheckconfirm:
+        return jsonify({"error": "Password doesn't match!"})
 
-    newvalues = {'$set': {'firstname': firstname, 'lastname': lastname, 'address': { 'street': street, 'city': city, 'province': province, 'zipcode': zipcode}}}
+    elif (passwordcheck == "" and passwordcheckconfirm == ""):
+        users_collection = mongo.db.users
 
-    users_collection.find_one_and_update({"email": email}, newvalues)
+        newvalues = {'$set': {'firstname': firstname, 'lastname': lastname, 'address': {
+            'street': street, 'city': city, 'province': province, 'zipcode': zipcode}}}
 
-    return jsonify({"success": "Update complete"})
+        users_collection.find_one_and_update({"email": email}, newvalues)
+
+        return jsonify({"success": "Update complete"})
+
+    elif (any(x.isupper() for x in passwordcheck) and any(x.islower() for x in passwordcheck) and any(x.isdigit() for x in passwordcheck) and len(passwordcheck) > 5):
+        users_collection = mongo.db.users
+        password = bcrypt.generate_password_hash(
+            request.get_json()['password']).decode('utf-8')
+        newvalues = {'$set': {'firstname': firstname, 'lastname': lastname, 'password': password, 'address': {
+            'street': street, 'city': city, 'province': province, 'zipcode': zipcode}}}
+
+        users_collection.find_one_and_update({"email": email}, newvalues)
+
+        return jsonify({"success": "Update complete"})
+    else:
+        return jsonify({"error": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 6 characters"})
 
 
 @main.route('/getUserAddress', methods=['POST'])
