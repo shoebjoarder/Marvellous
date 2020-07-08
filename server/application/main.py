@@ -13,7 +13,6 @@ main = Blueprint('main', __name__)
 # Login endpoint
 @main.route('/signin', methods=['POST'])
 def login():
-
     email = request.get_json()['email']
     password = request.get_json()['password']
 

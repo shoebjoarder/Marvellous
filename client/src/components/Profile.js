@@ -123,19 +123,11 @@ export default class Profile extends React.Component {
 	}
 
 
-	handleEditProfile = () => {
+	handleToggle = () => {
 		this.setState({
-			showProgress: false
+			showProgress: !this.state.showProgress
 		})
 	}
-
-
-	handleToProgress = () => {
-		this.setState({
-			showProgress: true
-		})
-	}
-
 
 	handleInputs = (e) => {
 		this.setState({
@@ -238,7 +230,7 @@ export default class Profile extends React.Component {
 		)
 
 		const EditProfileButton = (
-			<Button onClick={this.handleEditProfile} variant="outline-light" style={{ fontSize: '1em', backgroundColor: '#F3F6FE', color: "black" }} >
+			<Button onClick={this.handleToggle} variant="outline-light" style={{ fontSize: '1em', backgroundColor: '#F3F6FE', color: "black" }} >
 				<Image src="images/edit.png" className="img-fluid visible-lg-block" style={{ marginBottom: '0.3em', height: '1.5em' }} />
 				<strong style={{ color: "black", paddingLeft: "0.2em" }}>
 					Edit Profile
@@ -247,7 +239,7 @@ export default class Profile extends React.Component {
 		)
 
 		const BackToProgressButton = (
-			<Button onClick={this.handleToProgress} variant="outline-light" style={{ fontSize: '1em', backgroundColor: '#F3F6FE', color: "black" }} >
+			<Button onClick={this.handleToggle} variant="outline-light" style={{ fontSize: '1em', backgroundColor: '#F3F6FE', color: "black" }} >
 				<Image src="images/barchart.png" className="img-fluid visible-lg-block" style={{ marginBottom: '0.5em', height: '1.5em' }} />
 				<strong style={{ color: "black", paddingLeft: "0.2em" }}>
 					Back to Progress
