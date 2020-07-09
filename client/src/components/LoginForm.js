@@ -1,6 +1,12 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Col, Row, Form, Button } from "react-bootstrap";
+import {
+	Container,
+	Col,
+	Row,
+	Form,
+	Button
+} from "react-bootstrap";
 import axios from 'axios'
 
 
@@ -27,11 +33,9 @@ export default class LoginForm extends React.Component {
 			this.setState({
 				result: response.data,
 			});
-			// This needs to be removed later
-			console.log(this.state.result);
 			if (this.state.result.token) {
 				localStorage.setItem('usertoken', response.data.token)
-				this.setState ({
+				this.setState({
 					email: "",
 					password: "",
 					result: []
@@ -70,7 +74,7 @@ export default class LoginForm extends React.Component {
 					<Col className="align-self-center" style={{ paddingLeft: '4em' }}>
 						<Button onClick={this.handleLogin} variant="outline-light" style={{ backgroundColor: '#F3F6FE', color: "black" }} >&lt; Back to login</Button>
 
-						<Form style={{ border: "1px solid #000", padding: "50px 60px", backgroundColor: '#fff', borderRadius: '0.8em', marginTop: "3em" }}>
+						<Form style={{ border: "1px solid #fff", padding: "50px 60px", backgroundColor: '#fff', borderRadius: '0.8em', marginTop: "3em", WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 20px -1px rgba(0,0,0,0.75)' }}>
 
 							<Form.Group controlId="formEmail">
 								<Form.Label>Email</Form.Label>
@@ -82,12 +86,12 @@ export default class LoginForm extends React.Component {
 								<Form.Control type="password" name="password" id="password" value={this.state.password} onChange={this.handleInputs} required ></Form.Control>
 							</Form.Group>
 
-							{/* Display error */}
+							{/* Displays if there are errors */}
 							{this.state.result.error}
 
 							<br></br>
 							<br></br>
-							<Button className="float-right" onClick={this.handleSubmit} style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '1.5em' }}>Login</Button>
+							<Button className="float-right" onClick={this.handleSubmit} style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 5px -1px rgba(0,0,0,0.75)', fontSize: '1.5em' }}>Login</Button>
 							<br></br>
 							<br></br>
 						</Form>

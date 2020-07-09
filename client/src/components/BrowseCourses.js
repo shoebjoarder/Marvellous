@@ -1,37 +1,50 @@
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, CardDeck } from "react-bootstrap"
+import 'bootstrap/dist/css/bootstrap.min.css';
 import CourseCard from './CourseCard';
-// import jwt_decode from 'jwt-decode'
+import jwt_decode from 'jwt-decode'
 import axios from 'axios'
-
 
 export default class BrowseCourses extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			courses: []
+			courses: [],
+			yourCourses: []
 		}
 	}
 
 	componentDidMount = () => {
-		// this.setState({
-		// 	courses: []
-		// })
+		const decoded = jwt_decode(localStorage.usertoken);
+		let mail =  decoded.identity.email
+		this.getYourCourses(mail);
 		this.getCourses();
+	}
+
+	getYourCourses = (mail) => {
+		axios({
+			url: 'http://localhost:3000/getYourCourses',
+			method: 'POST',
+			data: {
+				email: mail
+			}
+		}).then((response) => {
+			this.setState({
+				yourCourses: response.data
+			});
+		}).catch((error) => {
+			console.log(error.response.request);
+		})
 	}
 
 	getCourses = () => {
 		axios({
-			url: 'http://localhost:3000/browse',
+			url: 'http://localhost:3000/getCourses',
 			method: 'GET'
 		}).then((response) => {
-			const data = response.data
 			this.setState({
-				courses: data
+				courses: response.data
 			});
-			// This needs to be removed later
-			console.log(this.state.courses);
 		}).catch((error) => {
 			console.log(error.response.request);
 		})
@@ -39,10 +52,9 @@ export default class BrowseCourses extends React.Component {
 
 	displayCourses = (courses) => {
 		if (!courses.length) return null;
-
 		return courses.map((course, index) => (
 			<div key={index} >
-				<CourseCard title={course.title} desc={course.desc_1} />
+				<CourseCard course={course} />
 			</div>
 		));
 	}
@@ -55,7 +67,7 @@ export default class BrowseCourses extends React.Component {
 					<h1 style={{ fontSize: '4.5em' }}>Your Courses</h1>
 					<p style={{ color: '#8A8A8A', fontSize: '1.5em', paddingBottom: '1.5em' }}>Courses you recently worked on</p>
 					<CardDeck style={{ paddingBottom: '5em' }}>
-						{/* <CourseCard /> */}
+						{this.displayCourses(this.state.yourCourses)}
 					</CardDeck>
 
 					<hr></hr>

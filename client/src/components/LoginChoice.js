@@ -1,19 +1,26 @@
-import React from 'react'
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Col, Row, Image, Button } from "react-bootstrap";
+import {
+	Container,
+	Col,
+	Row,
+	// Image,
+	Button
+} from "react-bootstrap";
 
 
 export default class LoginChoice extends React.Component {
 
-	handleJoin=(e)=>{
+	handleJoin = (e) => {
 		e.preventDefault();
 		this.props.history.push('/registration')
 	}
 
-	handleLogin=(e)=>{
+	handleLogin = (e) => {
 		e.preventDefault();
 		this.props.history.push('/signin')
 	}
+
 
 	render() {
 		return (
@@ -25,12 +32,12 @@ export default class LoginChoice extends React.Component {
 							<p style={{ fontSize: '1.5em' }}>All the courses are crafted with the principles of learning in mind</p>
 						</Col>
 						<Col className="align-self-center" style={{ paddingLeft: '4em', paddingTop: '5em' }}>
-							<Row>
-								<Button href="/github" size='lg' block variant="outline-dark" style={{ borderRadius: '0.7em', boxShadow: '2px 2px 4px #000000', fontSize: '2em' }}><Image src="images/github.png" style={{ height: '1em', width: 'auto', paddingRight: '0.2em', marginBottom: '0.25em' }} />Log in with Github</Button>
+							{/* <Row>
+								<Button onClick={this.loginWithGithub} size='lg' block variant="outline-dark" style={{ borderRadius: '0.7em', boxShadow: '2px 2px 4px #000000', fontSize: '2em' }}><Image src="images/github.png" style={{ height: '1em', width: 'auto', paddingRight: '0.2em', marginBottom: '0.25em' }} />Log in with Github</Button>
 							</Row>
-							<br></br>
+							<br></br> */}
 							<Row>
-								<Button onClick={this.handleLogin} size='lg' block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', boxShadow: '2px 2px 4px #000000', fontSize: '2em' }}>Log in with E-Mail</Button>
+								<Button onClick={this.handleLogin} size='lg' block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 5px -1px rgba(0,0,0,0.75)', fontSize: '2em' }}>Log in with E-Mail</Button>
 							</Row>
 							<Row>
 								<Col style={{ marginTop: '10em', textAlign: "center", verticalAlign: "middle" }}>
