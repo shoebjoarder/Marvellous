@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Col, Row, Button } from "react-bootstrap"
-// import { quizData } from "./quizData";
+import jwt_decode from 'jwt-decode'
 import axios from 'axios'
 import "../index.css"
 
@@ -15,7 +15,8 @@ class Quiz extends React.Component {
 		options: [],
 		score: 0,
 		disabled: true,
-		isEnd: false
+		isEnd: false,
+		status: []
 	};
 
 	componentDidMount() {
@@ -29,6 +30,7 @@ class Quiz extends React.Component {
 	}
 
 	getQuizData = (courseID) => {
+		console.log(courseID)
 		axios({
 			url: 'http://localhost:3000/getQuiz',
 			method: 'POST',
@@ -53,11 +55,41 @@ class Quiz extends React.Component {
 		})
 	};
 
+	setResult = () => {
+		const token = localStorage.usertoken
+		const decoded = jwt_decode(token)
+		let email = decoded.identity.email
+		axios({
+			url: 'http://localhost:3000/setResult',
+			method: 'POST',
+			data: {
+				email: email,
+				id: this.state.id,
+				result: this.state.score
+			}
+		}).then((response) => {
+			this.setState({
+				id: "",
+				title: "",
+				quizData: [],
+				currentQuestion: 0,
+				myAnswer: null,
+				options: [],
+				score: 0,
+				disabled: true,
+				isEnd: false,
+				status: []
+			})
+			console.log(response.data.success)
+		}).catch((error) => {
+			console.log(error.response.request);
+		})
+		this.props.history.push('/browse')
+	}
+
 
 	nextQuestionHandler = () => {
-		// console.log('test')
 		const { myAnswer, answer, score } = this.state;
-
 		if (myAnswer === answer) {
 			this.setState({
 				score: score + 1
@@ -69,6 +101,7 @@ class Quiz extends React.Component {
 		});
 		console.log(this.state.currentQuestion);
 	};
+
 
 	componentDidUpdate(prevProps, prevState) {
 		if (this.state.currentQuestion !== prevState.currentQuestion) {
@@ -82,6 +115,8 @@ class Quiz extends React.Component {
 			});
 		}
 	}
+
+
 	//check answer
 	checkAnswer = answer => {
 		this.setState({ myAnswer: answer, disabled: false });
@@ -98,6 +133,8 @@ class Quiz extends React.Component {
 			});
 		}
 	};
+
+
 	render() {
 		const { options, myAnswer, currentQuestion, isEnd } = this.state;
 
@@ -113,14 +150,20 @@ class Quiz extends React.Component {
 								<p style={{ fontSize: '2em' }}>Quiz</p>
 								<p style={{ fontSize: '1.5em' }}>Your Final score is {this.state.score}/{this.state.quizData.length} points </p>
 								<div>
-								<p style={{ fontSize: '1.2em', marginBottom: '1em' }}>The correct answer's for the questions was</p>
-            			<ul>
+									<p style={{ fontSize: '1.2em', marginBottom: '1em' }}>The correct answer's for the questions were</p>
+									<ul>
 										{this.state.quizData.map((item, index) => (
 											<li className="ui floating message options" style={{ marginBottom: '1em' }} key={index}>
 												{item.answer}
 											</li>
 										))}
 									</ul>
+
+									<div className={"row justify-content-end"} style={{ marginTop: '1.5em', marginRight: '0.6em' }}>
+
+										<Button onClick={this.setResult} size="lg" block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 5px -1px rgba(0,0,0,0.75)', fontSize: '1.3em', width: '9.5em' }}>Finish</Button>
+
+									</div>
 								</div>
 							</div>
 						</Col>

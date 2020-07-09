@@ -185,5 +185,21 @@ def getQuiz():
     # TODO: quiz_1 should be changed to something dynamic because there will be more quizzes
     id = request.get_json()['id']
     course_collection = mongo.db.courses
-    query = course_collection.find_one({'_id': ObjectId(id)}, {"quizzes": 1, "_id": 0})
+    query = course_collection.find_one(
+        {'_id': ObjectId(id)}, {"quizzes": 1, "_id": 0})
     return dumps(query)
+
+
+@main.route('/setResult', methods=['POST'])
+def setResult():
+    email = request.get_json()['email']
+    id = request.get_json()['id']
+    score = request.get_json()['result']
+    users_collection = mongo.db.users
+
+    # query = users_collection.find_one({'email': email, 'results': [{'id': id}]})
+
+    newvalues = {'$addToSet': {'results': { "id": id, "score": score}}}
+    users_collection.find_one_and_update({"email": email}, newvalues)
+
+    return jsonify({"success": "Update complete"})
