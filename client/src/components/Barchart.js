@@ -13,9 +13,7 @@ export class LineChart extends Component {
 		return color;
 	}
 
-	// Assignment Chart
 	render() {
-
 		const data = this.props.score;
 		let title = [];
 		let scores = [];
@@ -27,16 +25,14 @@ export class LineChart extends Component {
 			color.push(this.getRandomColor())
 		}
 
-
+		
 		const myData = {
 			labels: title,
-			datasets: [
-				{
-					label: "Course quiz scores",
-					backgroundColor: color,
-					data: scores
-				}
-			]
+			datasets: [{
+				label: "Quiz scores",
+				backgroundColor: color,
+				data: scores
+			}]
 		};
 
 
@@ -58,6 +54,9 @@ export class LineChart extends Component {
 								text: 'My quiz points for courses',
 							},
 							scales: {
+								xAxes: [{
+									barPercentage: 0.3
+								}],
 								yAxes: [{
 									ticks: {
 										max: 8,
