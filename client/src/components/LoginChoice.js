@@ -47,6 +47,7 @@ export default class LoginChoice extends React.Component {
 						</Col>
 					</Row>
 				</Container>
+				<br></br><br></br><br></br><br></br><br></br>
 			</div>
 		)
 	}

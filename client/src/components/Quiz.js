@@ -30,7 +30,6 @@ class Quiz extends React.Component {
 	}
 
 	getQuizData = (courseID) => {
-		console.log(courseID)
 		axios({
 			url: 'http://localhost:3000/getQuiz',
 			method: 'POST',
@@ -38,7 +37,6 @@ class Quiz extends React.Component {
 				id: courseID
 			}
 		}).then((response) => {
-			console.log(response.data)
 			this.setState({
 				quizData: response.data.quizzes,
 			});

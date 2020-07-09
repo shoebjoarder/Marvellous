@@ -32,6 +32,7 @@ export default function AboutUs() {
 					</Col>
 				</Row>
 			</Container>
+			<br></br>
 		</div>
 	)
 }
