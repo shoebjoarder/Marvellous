@@ -36,9 +36,10 @@ class Quiz extends React.Component {
 				id: courseID
 			}
 		}).then((response) => {
+			console.log(response.data)
 			this.setState({
 				// TODO: quiz_1 gives only first quiz. Needs upgrade to dynamically add more quizzes
-				quizData: response.data.quiz1,
+				quizData: response.data.quizzes,
 			});
 			// console.log(response.data)
 			// console.log(this.state.quizData[0].question)
@@ -108,12 +109,14 @@ class Quiz extends React.Component {
 						<Col className="align-self-center" style={{ padding: "50px 60px", backgroundColor: '#fff', borderRadius: '0.8em', marginTop: "3em", WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 20px -1px rgba(0,0,0,0.75)' }}>
 
 							<div className="result">
-								<h3>Game Over your Final score is {this.state.score} points </h3>
+								<p style={{ fontSize: '3em' }}>{this.state.title}</p>
+								<p style={{ fontSize: '2em' }}>Quiz</p>
+								<p style={{ fontSize: '1.5em' }}>Your Final score is {this.state.score}/{this.state.quizData.length} points </p>
 								<div>
-									The correct answer's for the questions was
+								<p style={{ fontSize: '1.2em', marginBottom: '1em' }}>The correct answer's for the questions was</p>
             			<ul>
 										{this.state.quizData.map((item, index) => (
-											<li className="ui floating message options" key={index}>
+											<li className="ui floating message options" style={{ marginBottom: '1em' }} key={index}>
 												{item.answer}
 											</li>
 										))}
@@ -131,9 +134,9 @@ class Quiz extends React.Component {
 						<Col className="align-self-center" style={{ padding: "7em 8em", backgroundColor: '#fff', borderRadius: '0.8em', marginTop: "3em", WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 20px -1px rgba(0,0,0,0.75)' }}>
 							<div className="App">
 								<p style={{ fontSize: '3em' }}>{this.state.title}</p>
-								<p style={{ fontSize: '2em' }}>Quiz 1</p>
+								<p style={{ fontSize: '2em' }}>Quiz</p>
 
-								<p style={{ marginBottom: '1em' }}>{`${currentQuestion}/${this.state.quizData.length - 1} remaining `}</p>
+								<p style={{ marginBottom: '1em' }}>{`${currentQuestion}/${this.state.quizData.length} completed `}</p>
 
 								<h2 style={{ marginBottom: '1em' }}>{this.state.questions} </h2>
 
