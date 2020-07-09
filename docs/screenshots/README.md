@@ -16,7 +16,7 @@ Screenshots available
 
 ### Registration page
 
-![registration-page.png](registration-page.png.png)
+![registration-page.png](registration-page.png)
 
 ### Profile Page with Progress and Edit
 
