@@ -1,6 +1,12 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Col, Row, Form, Button } from "react-bootstrap"
+import {
+	Container,
+	Col,
+	Row,
+	Form,
+	Button
+} from "react-bootstrap"
 import axios from 'axios'
 
 export default class RegistrationPage extends React.Component {
@@ -115,6 +121,7 @@ export default class RegistrationPage extends React.Component {
 								{/* display if error exists */}
 								{this.state.result.error}
 								<br /><br />
+								
 								<Button className="float-right" onClick={this.handleSubmit} style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 5px -1px rgba(0,0,0,0.75)', fontSize: '1.5em' }}>Confirm Sign Up</Button>
 								<br></br>
 								<br></br>

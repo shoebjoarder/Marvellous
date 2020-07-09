@@ -1,6 +1,12 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Nav, Navbar, Button, Image, Container } from "react-bootstrap"
+import {
+	Nav,
+	Navbar,
+	Button,
+	Image,
+	Container
+} from "react-bootstrap"
 import { withRouter } from 'react-router-dom'
 
 
@@ -9,8 +15,6 @@ class NavigationBar extends React.Component {
 	handleSignOut = (e) => {
 		e.preventDefault();
 		localStorage.clear();
-		// localStorage.removeItem('usertoken')
-		// TODO: also needs the browsetoken to be removed
 		this.props.history.push('/')
 	}
 
@@ -19,7 +23,7 @@ class NavigationBar extends React.Component {
 		this.props.history.push('/profile')
 	}
 
-	// this should call the backend and 
+	
 	handleBrowse = (e) => {
 		e.preventDefault();
 		this.props.history.push('/browse')

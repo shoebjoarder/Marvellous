@@ -1,6 +1,11 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Col, Row, Image } from "react-bootstrap"
+import {
+	Container,
+	Col,
+	Row,
+	Image
+} from "react-bootstrap"
 
 
 export default function AboutUs() {
@@ -17,7 +22,7 @@ export default function AboutUs() {
 						<p style={{ fontSize: '3.5em' }}>We are <u style={{ color: '#1E38BF' }}>NXGEN</u></p>
 						<p style={{ fontSize: '1.5em' }}>
 							Team members
-							<ul style={{ fontSize: '0.8em'}}>
+							<ul style={{ fontSize: '0.8em' }}>
 								<li>Shoeb Ahmed Joarder</li>
 								<li>Seyedemarzie Mirhashemi</li>
 								<li>Yunlong Zhao</li>

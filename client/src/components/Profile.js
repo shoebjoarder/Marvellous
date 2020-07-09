@@ -1,7 +1,14 @@
 import React from 'react'
-import { Container, Col, Row, Image, Button, Form } from "react-bootstrap"
+import {
+	Container,
+	Col,
+	Row,
+	Image,
+	Button,
+	Form
+} from "react-bootstrap"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import LineChart from './LineChart'
+import Barchart from './Barchart'
 import jwt_decode from 'jwt-decode'
 import axios from 'axios'
 
@@ -21,7 +28,8 @@ export default class Profile extends React.Component {
 			showProgress: true,
 			password: "",
 			cpassword: "",
-			result: ""
+			result: "",
+			score: []
 		}
 	}
 
@@ -36,8 +44,28 @@ export default class Profile extends React.Component {
 			email: decoded.identity.email,
 			gender: decoded.identity.gender,
 		})
-
+		this.getCourseResults(mail);
 		this.getUserAddress(mail);
+	}
+
+	getCourseResults = (mail) => {
+		axios({
+			url: 'http://localhost:3000/getCourseResults',
+			method: 'POST',
+			data: {
+				email: mail
+			}
+		}).then((response) => {
+			if (response.data.results) {
+				this.setState({
+					score: response.data.results
+				})
+			} else {
+				console.log(response.data.error)
+			}
+		}).catch((error) => {
+			console.log(error.response.request);
+		})
 	}
 
 
@@ -62,8 +90,6 @@ export default class Profile extends React.Component {
 					result: response.data.error
 				});
 			}
-			// TEST: This needs to be removed later
-			console.log(response.data.error)
 		}).catch((error) => {
 			console.log(error.response.request);
 		})
@@ -103,9 +129,6 @@ export default class Profile extends React.Component {
 					showProgress: true
 				});
 			}
-			// This needs to be removed later
-			console.log(response.data)
-			console.log(this.state.result);
 		}).catch((error) => {
 			console.log(error.response.request);
 		})
@@ -123,19 +146,11 @@ export default class Profile extends React.Component {
 	}
 
 
-	handleEditProfile = () => {
+	handleToggle = () => {
 		this.setState({
-			showProgress: false
+			showProgress: !this.state.showProgress
 		})
 	}
-
-
-	handleToProgress = () => {
-		this.setState({
-			showProgress: true
-		})
-	}
-
 
 	handleInputs = (e) => {
 		this.setState({
@@ -179,7 +194,6 @@ export default class Profile extends React.Component {
 						<Form.Group as={Col} controlId="formGridState">
 							<Form.Label>Province</Form.Label>
 							<Form.Control as="select" name="province" id="province" value={this.state.province} onChange={this.handleInputs}>
-								{/* Choose the one selected and put it inside defaultValue above*/}
 								<option></option>
 								<option>Bavaria</option>
 								<option>Lower Saxony</option>
@@ -218,7 +232,7 @@ export default class Profile extends React.Component {
 						</Form.Group>
 					</Form.Row>
 
-					{/* display if error exists */}
+					{/* Displays if error exists */}
 					{this.state.result.error}
 
 					<div className={"row justify-content-end"} style={{ marginTop: '1.5em', marginRight: '0.6em' }}>
@@ -232,13 +246,12 @@ export default class Profile extends React.Component {
 		const Progress = (
 			<Col className="align-self-center" style={{ paddingLeft: '4em' }}>
 				<p style={{ fontSize: '3em', marginBottom: '1em' }}>Your Progress</p>
-				{/* TODO: These will be the plots from Dash */}
-				<LineChart />
+				<Barchart score={this.state.score} />
 			</Col >
 		)
 
 		const EditProfileButton = (
-			<Button onClick={this.handleEditProfile} variant="outline-light" style={{ fontSize: '1em', backgroundColor: '#F3F6FE', color: "black" }} >
+			<Button onClick={this.handleToggle} variant="outline-light" style={{ fontSize: '1em', backgroundColor: '#F3F6FE', color: "black" }} >
 				<Image src="images/edit.png" className="img-fluid visible-lg-block" style={{ marginBottom: '0.3em', height: '1.5em' }} />
 				<strong style={{ color: "black", paddingLeft: "0.2em" }}>
 					Edit Profile
@@ -247,7 +260,7 @@ export default class Profile extends React.Component {
 		)
 
 		const BackToProgressButton = (
-			<Button onClick={this.handleToProgress} variant="outline-light" style={{ fontSize: '1em', backgroundColor: '#F3F6FE', color: "black" }} >
+			<Button onClick={this.handleToggle} variant="outline-light" style={{ fontSize: '1em', backgroundColor: '#F3F6FE', color: "black" }} >
 				<Image src="images/barchart.png" className="img-fluid visible-lg-block" style={{ marginBottom: '0.5em', height: '1.5em' }} />
 				<strong style={{ color: "black", paddingLeft: "0.2em" }}>
 					Back to Progress
