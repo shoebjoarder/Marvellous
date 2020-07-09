@@ -1,5 +1,12 @@
 import React from 'react'
-import { Container, Col, Row, Image, Button, Form } from "react-bootstrap"
+import {
+	Container,
+	Col,
+	Row,
+	Image,
+	Button,
+	Form
+} from "react-bootstrap"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Barchart from './Barchart'
 import jwt_decode from 'jwt-decode'
@@ -49,11 +56,13 @@ export default class Profile extends React.Component {
 				email: mail
 			}
 		}).then((response) => {
-			this.setState({
-				score: response.data.results
-			})
-			// TEST: This needs to be removed later
-			console.log(response.data.results)
+			if (response.data.results) {
+				this.setState({
+					score: response.data.results
+				})
+			} else {
+				console.log(response.data.error)
+			}
 		}).catch((error) => {
 			console.log(error.response.request);
 		})
@@ -81,8 +90,6 @@ export default class Profile extends React.Component {
 					result: response.data.error
 				});
 			}
-			// TEST: This needs to be removed later
-			console.log(response.data.error)
 		}).catch((error) => {
 			console.log(error.response.request);
 		})
@@ -122,9 +129,6 @@ export default class Profile extends React.Component {
 					showProgress: true
 				});
 			}
-			// This needs to be removed later
-			console.log(response.data)
-			console.log(this.state.result);
 		}).catch((error) => {
 			console.log(error.response.request);
 		})
@@ -190,7 +194,6 @@ export default class Profile extends React.Component {
 						<Form.Group as={Col} controlId="formGridState">
 							<Form.Label>Province</Form.Label>
 							<Form.Control as="select" name="province" id="province" value={this.state.province} onChange={this.handleInputs}>
-								{/* Choose the one selected and put it inside defaultValue above*/}
 								<option></option>
 								<option>Bavaria</option>
 								<option>Lower Saxony</option>
@@ -229,7 +232,7 @@ export default class Profile extends React.Component {
 						</Form.Group>
 					</Form.Row>
 
-					{/* display if error exists */}
+					{/* Displays if error exists */}
 					{this.state.result.error}
 
 					<div className={"row justify-content-end"} style={{ marginTop: '1.5em', marginRight: '0.6em' }}>

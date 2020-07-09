@@ -1,10 +1,9 @@
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, CardDeck } from "react-bootstrap"
+import 'bootstrap/dist/css/bootstrap.min.css';
 import CourseCard from './CourseCard';
-// import jwt_decode from 'jwt-decode'
-import axios from 'axios'
 import jwt_decode from 'jwt-decode'
+import axios from 'axios'
 
 export default class BrowseCourses extends React.Component {
 	constructor(props) {
@@ -33,9 +32,6 @@ export default class BrowseCourses extends React.Component {
 			this.setState({
 				yourCourses: response.data
 			});
-			// This needs to be removed later
-			console.log(response.data)
-			// console.log(this.state.yourCourses);
 		}).catch((error) => {
 			console.log(error.response.request);
 		})
@@ -46,12 +42,9 @@ export default class BrowseCourses extends React.Component {
 			url: 'http://localhost:3000/getCourses',
 			method: 'GET'
 		}).then((response) => {
-			const data = response.data
 			this.setState({
-				courses: data
+				courses: response.data
 			});
-			// This needs to be removed later
-			console.log(this.state.courses);
 		}).catch((error) => {
 			console.log(error.response.request);
 		})
@@ -59,7 +52,6 @@ export default class BrowseCourses extends React.Component {
 
 	displayCourses = (courses) => {
 		if (!courses.length) return null;
-
 		return courses.map((course, index) => (
 			<div key={index} >
 				<CourseCard course={course} />

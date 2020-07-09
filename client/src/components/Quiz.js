@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode'
 import axios from 'axios'
 import "../index.css"
 
-// TODO: Need to think about "Gathering points for each quiz" and store according to the 
+
 class Quiz extends React.Component {
 	state = {
 		id: "",
@@ -40,11 +40,8 @@ class Quiz extends React.Component {
 		}).then((response) => {
 			console.log(response.data)
 			this.setState({
-				// TODO: quiz_1 gives only first quiz. Needs upgrade to dynamically add more quizzes
 				quizData: response.data.quizzes,
 			});
-			// console.log(response.data)
-			// console.log(this.state.quizData[0].question)
 			this.setState({
 				questions: this.state.quizData[this.state.currentQuestion].question,
 				answer: this.state.quizData[this.state.currentQuestion].answer,
@@ -81,7 +78,6 @@ class Quiz extends React.Component {
 				isEnd: false,
 				status: []
 			})
-			console.log(response.data.success)
 		}).catch((error) => {
 			console.log(error.response.request);
 		})
@@ -118,7 +114,7 @@ class Quiz extends React.Component {
 	}
 
 
-	//check answer
+	// Check answer
 	checkAnswer = answer => {
 		this.setState({ myAnswer: answer, disabled: false });
 	};
@@ -141,15 +137,17 @@ class Quiz extends React.Component {
 
 		if (isEnd) {
 			return (
-				// TODO: Need to change it to "show correct answers" after each question
 				<Container>
 					<Row style={{ marginTop: "2.75em", marginBottom: '11.4em' }}>
 						<Col className="align-self-center" style={{ padding: "50px 60px", backgroundColor: '#fff', borderRadius: '0.8em', marginTop: "3em", WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 20px -1px rgba(0,0,0,0.75)' }}>
 
 							<div className="result">
 								<p style={{ fontSize: '3em' }}>{this.state.title}</p>
+
 								<p style={{ fontSize: '2em' }}>Quiz</p>
+
 								<p style={{ fontSize: '1.5em' }}>Your Final score is {this.state.score}/{this.state.quizData.length} points </p>
+								
 								<div>
 									<p style={{ fontSize: '1.2em', marginBottom: '1em' }}>The correct answer's for the questions were</p>
 									<ul>
@@ -178,6 +176,7 @@ class Quiz extends React.Component {
 						<Col className="align-self-center" style={{ padding: "7em 8em", backgroundColor: '#fff', borderRadius: '0.8em', marginTop: "3em", WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 20px -1px rgba(0,0,0,0.75)' }}>
 							<div className="App">
 								<p style={{ fontSize: '3em' }}>{this.state.title}</p>
+
 								<p style={{ fontSize: '2em' }}>Quiz</p>
 
 								<p style={{ marginBottom: '1em' }}>{`${currentQuestion}/${this.state.quizData.length} completed `}</p>
@@ -185,22 +184,17 @@ class Quiz extends React.Component {
 								<h2 style={{ marginBottom: '1em' }}>{this.state.questions} </h2>
 
 								{options.map(option => (
-									<p
-										key={option.id}
-										className={`ui floating message options
-         ${myAnswer === option ? "selected" : null}
-         `}
-										onClick={() => this.checkAnswer(option)}
-									>
+									<p key={option.id} className={`ui floating message options ${myAnswer === option ? "selected" : null}`} onClick={() => this.checkAnswer(option)} >
 										{option}
 									</p>
 								))}
+
 								{currentQuestion < this.state.quizData.length - 1 && (
 									<div className={"row justify-content-end"} style={{ marginTop: '1.5em', marginRight: '0.6em' }}>
 										<Button onClick={this.nextQuestionHandler} disabled={this.state.disabled} size="lg" block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 5px -1px rgba(0,0,0,0.75)', fontSize: '1.3em', width: '9.5em' }}>Next</Button>
 									</div>
 								)}
-								{/* //adding a finish button */}
+
 								{currentQuestion === this.state.quizData.length - 1 && (
 									<div className={"row justify-content-end"} style={{ marginTop: '1.5em', marginRight: '0.6em' }}>
 										<Button onClick={this.finishHandler} disabled={this.state.disabled} size="lg" block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 5px -1px rgba(0,0,0,0.75)', fontSize: '1.3em', width: '9.5em' }}>Finish</Button>

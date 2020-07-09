@@ -1,7 +1,7 @@
 from flask import Blueprint, Flask, request, jsonify, json
 from bson.json_util import dumps, RELAXED_JSON_OPTIONS
-from bson.objectid import ObjectId
 from flask_jwt_extended import create_access_token
+from bson.objectid import ObjectId
 
 from .extensions import mongo
 from .extensions import bcrypt
@@ -207,4 +207,6 @@ def getCourseResults():
     email = request.get_json()['email']
     users_collection = mongo.db.users
     query = users_collection.find_one({'email': email}, {'results': 1, "_id": 0})
+    if query is None:
+        return jsonify({"error": "no courses"})
     return dumps(query)

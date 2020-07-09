@@ -1,6 +1,12 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Col, Row, Form, Button } from "react-bootstrap";
+import {
+	Container,
+	Col,
+	Row,
+	Form,
+	Button
+} from "react-bootstrap";
 import axios from 'axios'
 
 
@@ -27,8 +33,6 @@ export default class LoginForm extends React.Component {
 			this.setState({
 				result: response.data,
 			});
-			// This needs to be removed later
-			console.log(this.state.result);
 			if (this.state.result.token) {
 				localStorage.setItem('usertoken', response.data.token)
 				this.setState({
@@ -82,7 +86,7 @@ export default class LoginForm extends React.Component {
 								<Form.Control type="password" name="password" id="password" value={this.state.password} onChange={this.handleInputs} required ></Form.Control>
 							</Form.Group>
 
-							{/* Display error */}
+							{/* Displays if there are errors */}
 							{this.state.result.error}
 
 							<br></br>

@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Bar } from 'react-chartjs-2'
 
 
-export class LineChart extends Component {
+export class LineChart extends React.Component {
 
 	getRandomColor = () => {
 		let letters = '0123456789ABCDEF';
@@ -25,7 +25,7 @@ export class LineChart extends Component {
 			color.push(this.getRandomColor())
 		}
 
-		
+
 		const myData = {
 			labels: title,
 			datasets: [{
@@ -55,7 +55,7 @@ export class LineChart extends Component {
 							},
 							scales: {
 								xAxes: [{
-									barPercentage: 0.3
+									barPercentage: 0.6
 								}],
 								yAxes: [{
 									ticks: {

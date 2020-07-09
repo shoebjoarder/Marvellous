@@ -1,8 +1,15 @@
 import React from 'react'
-import { Container, Col, Row, Card, Button } from "react-bootstrap"
+import {
+	Container,
+	Col,
+	Row,
+	Card,
+	Button
+} from "react-bootstrap"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios'
 import jwt_decode from 'jwt-decode'
+import axios from 'axios'
+
 
 
 export default class Course extends React.Component {
@@ -58,7 +65,6 @@ export default class Course extends React.Component {
 			this.setState({
 				result: response.data,
 			});
-			console.log(response.data)
 			if (response.data.success) {
 				this.setState({
 					enrolled: true
@@ -82,7 +88,6 @@ export default class Course extends React.Component {
 			this.setState({
 				result: response.data,
 			});
-			console.log(response.data)
 			if (response.data.success) {
 				this.setState({
 					enrolled: false
@@ -102,7 +107,6 @@ export default class Course extends React.Component {
 				id: ident
 			}
 		}).then((response) => {
-			console.log(response.data)
 			if (response.data.success) {
 				this.setState({
 					enrolled: true
@@ -112,8 +116,6 @@ export default class Course extends React.Component {
 					enrolled: false
 				});
 			}
-			// This needs to be removed later
-			console.log(this.state.enrolled);
 		}).catch((error) => {
 			console.log(error.response.request);
 		})
@@ -161,7 +163,6 @@ export default class Course extends React.Component {
 						<Col className="d-none d-md-block col-md-4" style={{ padding: '4em 2em' }}>
 							<Card style={{ width: '300px', borderRadius: '0.8em', WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 20px -1px rgba(0,0,0,0.75)' }}>
 
-								{/* TODO: Image will change dynamically */}
 								<Card.Img variant="top" className="mx-auto d-block" style={{ height: '230px', width: '230px' }} src={this.state.image} />
 
 								<Card.Body style={{ padding: '1.5em' }}>
