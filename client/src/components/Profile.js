@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Col, Row, Image, Button, Form } from "react-bootstrap"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import LineChart from './LineChart'
+import Barchart from './Barchart'
 import jwt_decode from 'jwt-decode'
 import axios from 'axios'
 
@@ -21,7 +21,8 @@ export default class Profile extends React.Component {
 			showProgress: true,
 			password: "",
 			cpassword: "",
-			result: ""
+			result: "",
+			score: []
 		}
 	}
 
@@ -36,8 +37,26 @@ export default class Profile extends React.Component {
 			email: decoded.identity.email,
 			gender: decoded.identity.gender,
 		})
-
+		this.getCourseResults(mail);
 		this.getUserAddress(mail);
+	}
+
+	getCourseResults = (mail) => {
+		axios({
+			url: 'http://localhost:3000/getCourseResults',
+			method: 'POST',
+			data: {
+				email: mail
+			}
+		}).then((response) => {
+			this.setState({
+				score: response.data.results
+			})
+			// TEST: This needs to be removed later
+			console.log(response.data.results)
+		}).catch((error) => {
+			console.log(error.response.request);
+		})
 	}
 
 
@@ -224,8 +243,7 @@ export default class Profile extends React.Component {
 		const Progress = (
 			<Col className="align-self-center" style={{ paddingLeft: '4em' }}>
 				<p style={{ fontSize: '3em', marginBottom: '1em' }}>Your Progress</p>
-				{/* TODO: These will be the plots from Dash */}
-				<LineChart />
+				<Barchart score={this.state.score} />
 			</Col >
 		)
 

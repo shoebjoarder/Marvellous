@@ -194,12 +194,21 @@ def getQuiz():
 def setResult():
     email = request.get_json()['email']
     id = request.get_json()['id']
+    title = request.get_json()['title']
     score = request.get_json()['result']
     users_collection = mongo.db.users
 
-    # query = users_collection.find_one({'email': email, 'results': [{'id': id}]})
-
-    newvalues = {'$addToSet': {'results': { "id": id, "score": score}}}
+    newvalues = {'$addToSet': {'results': { "id": id, "score": score, "title": title }}}
     users_collection.find_one_and_update({"email": email}, newvalues)
 
     return jsonify({"success": "Update complete"})
+
+
+@main.route('/getCourseResults', methods=['POST'])
+def getCourseResults():
+    email = request.get_json()['email']
+    users_collection = mongo.db.users
+
+    query = users_collection.find_one({'email': email}, {'results': 1, "_id": 0})
+
+    return dumps(query)

@@ -65,6 +65,7 @@ class Quiz extends React.Component {
 			data: {
 				email: email,
 				id: this.state.id,
+				title: this.state.title,
 				result: this.state.score
 			}
 		}).then((response) => {
