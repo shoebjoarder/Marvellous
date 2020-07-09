@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Bar } from 'react-chartjs-2'
 
 
-
 export class LineChart extends Component {
 
 	getRandomColor = () => {
@@ -20,23 +19,21 @@ export class LineChart extends Component {
 		const data = this.props.score;
 		let title = [];
 		let scores = [];
+		let color = []
 		let i = 0;
 		for (i; i < data.length; i++) {
 			title.push(data[i].title)
 			scores.push(data[i].score)
+			color.push(this.getRandomColor())
 		}
 
 
 		const myData = {
-			// These values for labels I want to receive as props
-			// labels: ["Africa", "Asia", "Europe", "Latin America"],
 			labels: title,
 			datasets: [
 				{
 					label: "Course quiz scores",
-					backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-					// These values I want to receive as props
-					// data: [2478, 5267, 734, 784]
+					backgroundColor: color,
 					data: scores
 				}
 			]
