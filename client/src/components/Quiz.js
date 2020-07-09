@@ -38,7 +38,7 @@ class Quiz extends React.Component {
 		}).then((response) => {
 			this.setState({
 				// TODO: quiz_1 gives only first quiz. Needs upgrade to dynamically add more quizzes
-				quizData: response.data.quiz1,
+				quizData: response.data.quizzes[0],
 			});
 			// console.log(response.data)
 			// console.log(this.state.quizData[0].question)
@@ -108,16 +108,22 @@ class Quiz extends React.Component {
 						<Col className="align-self-center" style={{ padding: "50px 60px", backgroundColor: '#fff', borderRadius: '0.8em', marginTop: "3em", WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 20px -1px rgba(0,0,0,0.75)' }}>
 
 							<div className="result">
-								<h3>Game Over your Final score is {this.state.score} points </h3>
+								<p style={{ fontSize: '3em' }}>{this.state.title}</p>
+								<p style={{ fontSize: '2em' }}>Quiz 1</p>
+								<p style={{ fontSize: '1.5em' }}>Your Final score is {this.state.score} points </p>
 								<div>
-									The correct answer's for the questions was
-            			<ul>
+									<p style={{ fontSize: '1.3em' }}>The correct answer's are:</p>
+
+									<ul >
 										{this.state.quizData.map((item, index) => (
-											<li className="ui floating message options" key={index}>
+											<li className="ui floating message options" key={index} style={{ marginBottom: '1em' }}>
 												{item.answer}
 											</li>
 										))}
 									</ul>
+									<div className={"row justify-content-end"} style={{ marginTop: '1.5em', marginRight: '0.6em' }}>
+										<Button onClick={this.nextVideo} disabled={this.state.disabled} size="lg" block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 5px -1px rgba(0,0,0,0.75)', fontSize: '1.3em', width: '9.5em' }}>Next Video</Button>
+									</div>
 								</div>
 							</div>
 						</Col>
@@ -133,7 +139,7 @@ class Quiz extends React.Component {
 								<p style={{ fontSize: '3em' }}>{this.state.title}</p>
 								<p style={{ fontSize: '2em' }}>Quiz 1</p>
 
-								<p style={{ marginBottom: '1em' }}>{`${currentQuestion}/${this.state.quizData.length - 1} remaining `}</p>
+								<p style={{ marginBottom: '1em' }}>{`${currentQuestion}/${this.state.quizData.length} completed `}</p>
 
 								<h2 style={{ marginBottom: '1em' }}>{this.state.questions} </h2>
 

@@ -185,5 +185,5 @@ def getQuiz():
     # TODO: quiz_1 should be changed to something dynamic because there will be more quizzes
     id = request.get_json()['id']
     course_collection = mongo.db.courses
-    query = course_collection.find_one({'_id': ObjectId(id)}, {"quiz1": 1, "_id": 0})
+    query = course_collection.find_one({'_id': ObjectId(id)}, {"quizzes": 1, "_id": 0})
     return dumps(query)
