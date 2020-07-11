@@ -2,6 +2,7 @@ from flask import Blueprint, Flask, request, jsonify, json
 from bson.json_util import dumps, RELAXED_JSON_OPTIONS
 from flask_jwt_extended import create_access_token
 from bson.objectid import ObjectId
+import re
 
 from .extensions import mongo
 from .extensions import bcrypt
@@ -45,14 +46,27 @@ def registration():
     passwordcheck = request.get_json()['password']
     passwordcheckconfirm = request.get_json()['cpassword']
 
+    if firstname == "" or lastname == "":
+        return jsonify({"name": "Cannot be empty"})
+
+    regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+
+    if email == "":
+        return jsonify({"email": "Enter email"})
+
+    if(re.search(regex, email)):
+        pass
+    else:
+        return jsonify({"email": "Enter a valid email using @ sign"})
+
     user_collection = mongo.db.users
     query = user_collection.find_one({'email': email})
 
     if passwordcheck != passwordcheckconfirm:
-        return jsonify({"error": "Password doesn't match!"})
+        return jsonify({"password": "Password doesn't match!"})
 
     elif query is not None:
-        return jsonify({'error': 'User already exist!'})
+        return jsonify({"email": "User already exist!"})
 
     elif (any(x.isupper() for x in passwordcheck) and any(x.islower() for x in passwordcheck) and any(x.isdigit() for x in passwordcheck) and len(passwordcheck) > 5):
         user_collection = mongo.db.users
@@ -62,7 +76,7 @@ def registration():
                                 'gender': gender, 'email': email, 'password': password})
         return jsonify({"success": "registration complete"})
     else:
-        return jsonify({"error": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 6 characters"})
+        return jsonify({"password": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 6 characters"})
 
 
 @main.route('/setUserDetails', methods=['POST'])
@@ -197,7 +211,8 @@ def setResult():
     title = request.get_json()['title']
     score = request.get_json()['result']
     users_collection = mongo.db.users
-    newvalues = {'$addToSet': {'results': { "id": id, "score": score, "title": title }}}
+    newvalues = {'$addToSet': {'results': {
+        "id": id, "score": score, "title": title}}}
     users_collection.find_one_and_update({"email": email}, newvalues)
     return jsonify({"success": "Update complete"})
 
@@ -206,7 +221,8 @@ def setResult():
 def getCourseResults():
     email = request.get_json()['email']
     users_collection = mongo.db.users
-    query = users_collection.find_one({'email': email}, {'results': 1, "_id": 0})
+    query = users_collection.find_one(
+        {'email': email}, {'results': 1, "_id": 0})
     if query is None:
         return jsonify({"error": "no courses"})
     return dumps(query)

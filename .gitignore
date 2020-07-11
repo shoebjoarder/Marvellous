@@ -108,4 +108,4 @@ dist
 /client/node_modules/
 __pycache__/
 .vscode/
-/awt-marvellous.code-workspace
+/awtproject.code-workspace
