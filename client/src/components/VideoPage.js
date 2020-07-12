@@ -41,7 +41,7 @@ export default class VideoPage extends React.Component {
 				<ReactPlayer style={{
 					position: "absolute", top: "0",
 					left: "0"
-				}} url={this.state.video} width="100%" height="100%" />
+				}} url={this.state.video} width="100%" height="100%" controls="true" />
 			</div>
 		)
 

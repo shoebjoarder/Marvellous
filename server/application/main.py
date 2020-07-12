@@ -21,7 +21,7 @@ def login():
     query = user_collection.find_one({'email': email})
 
     if query is None:
-        return jsonify({"error": "Email not registered"})
+        return jsonify({"email": "Email not registered"})
     elif query:
         if bcrypt.check_password_hash(query['password'], password):
             accessToken = create_access_token(identity={
@@ -29,11 +29,10 @@ def login():
                 'lastname': query['lastname'],
                 'gender': query['gender'],
                 'email': query['email'],
-                # 'courses': query['courses']
             })
             return jsonify({'token': accessToken})
         else:
-            return jsonify({'error': 'Password does not match!'})
+            return jsonify({'password': 'Wrong password! Check again.'})
 
 
 # Registration endpoint
@@ -74,9 +73,9 @@ def registration():
             request.get_json()['password']).decode('utf-8')
         user_collection.insert({'firstname': firstname, 'lastname': lastname,
                                 'gender': gender, 'email': email, 'password': password})
-        return jsonify({"success": "registration complete"})
+        return jsonify({"success": "Registration complete!"})
     else:
-        return jsonify({"password": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 6 characters"})
+        return jsonify({"password": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 8 characters"})
 
 
 @main.route('/setUserDetails', methods=['POST'])
@@ -91,8 +90,14 @@ def setUserDetails():
     passwordcheck = request.get_json()['password']
     passwordcheckconfirm = request.get_json()['cpassword']
 
+    if firstname == "":
+        return jsonify({"firstname": "Firstname cannot be empty"})
+
+    if lastname == "":
+        return jsonify({"lastname": "Lastname cannot be empty"})
+
     if passwordcheck != passwordcheckconfirm:
-        return jsonify({"error": "Password doesn't match!"})
+        return jsonify({"password": "Password doesn't match!"})
 
     elif (passwordcheck == "" and passwordcheckconfirm == ""):
         users_collection = mongo.db.users
@@ -113,9 +118,9 @@ def setUserDetails():
 
         users_collection.find_one_and_update({"email": email}, newvalues)
 
-        return jsonify({"success": "Update complete"})
+        return jsonify({"success": "Profile details updated!"})
     else:
-        return jsonify({"error": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 6 characters"})
+        return jsonify({"password": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 8 characters"})
 
 
 @main.route('/getUserAddress', methods=['POST'])

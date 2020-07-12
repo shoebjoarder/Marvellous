@@ -5,7 +5,8 @@ import {
 	Row,
 	Image,
 	Button,
-	Form
+	Form,
+	Alert
 } from "react-bootstrap"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Barchart from './Barchart'
@@ -125,8 +126,7 @@ export default class Profile extends React.Component {
 					province: this.state.province,
 					zipcode: this.state.zipcode,
 					password: "",
-					cpassword: "",
-					showProgress: true
+					cpassword: ""
 				});
 			}
 		}).catch((error) => {
@@ -160,6 +160,30 @@ export default class Profile extends React.Component {
 
 
 	render() {
+		const RegistrationComplete = (
+			<Alert variant="success">
+				{this.state.result.success}
+			</Alert>
+		)
+
+		const PasswordError = (
+			<Alert variant="danger">
+				{this.state.result.password}
+			</Alert>
+		)
+
+		const FirstNameError = (
+			<Alert variant="danger">
+				{this.state.result.firstname}
+			</Alert>
+		)
+
+		const LastNameError = (
+			<Alert variant="danger">
+				{this.state.result.lastname}
+			</Alert>
+		)
+
 		const EditProfile = (
 			<Col className="align-self-center" style={{ paddingLeft: '4em' }}>
 				<p style={{ fontSize: '3em' }}>Change your details</p>
@@ -168,18 +192,15 @@ export default class Profile extends React.Component {
 					<Form.Row>
 						<Form.Group as={Col} controlId="formGridEmail">
 							<Form.Label>Firstname</Form.Label>
-							<Form.Control type="text" name="firstname" id="firstname" placeholder="e.g. Jon" value={this.state.firstname} onChange={this.handleInputs} required />
-							<Form.Control.Feedback type="invalid">
-								Please choose your Firstname.
-            </Form.Control.Feedback>
-						</Form.Group>
+							<Form.Control type="text" name="firstname" id="firstname" placeholder="e.g. Jon" value={this.state.firstname} onChange={this.handleInputs} />
+						</Form.Group>						
 
 						<Form.Group as={Col} controlId="formGridPassword">
 							<Form.Label>Lastname</Form.Label>
-							<Form.Control type="text" name="lastname" id="lastname" placeholder="e.g. Doe" value={this.state.lastname} onChange={this.handleInputs} required />
+							<Form.Control type="text" name="lastname" id="lastname" placeholder="e.g. Doe" value={this.state.lastname} onChange={this.handleInputs} />
 						</Form.Group>
 					</Form.Row>
-
+					
 					<Form.Group controlId="formGridAddress1">
 						<Form.Label>Address </Form.Label>
 						<Form.Control type="text" name="street" id="street" value={this.state.street} onChange={this.handleInputs} placeholder="e.g. Kammerstrasse 206" />
@@ -233,7 +254,12 @@ export default class Profile extends React.Component {
 					</Form.Row>
 
 					{/* Displays if error exists */}
-					{this.state.result.error}
+					{this.state.result.firstname ? FirstNameError : null}
+					{this.state.result.lastname ? LastNameError : null}
+					{this.state.result.password ? PasswordError : null}
+
+					{/* Displays if success */}
+					{this.state.result.success ? RegistrationComplete : null}
 
 					<div className={"row justify-content-end"} style={{ marginTop: '1.5em', marginRight: '0.6em' }}>
 						<Button onClick={this.setUserDetails} size="lg" block style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 5px -1px rgba(0,0,0,0.75)', fontSize: '1.3em', width: '9.5em' }}>Confirm changes</Button>

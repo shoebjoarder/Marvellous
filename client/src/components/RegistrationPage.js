@@ -24,7 +24,7 @@ export default class RegistrationPage extends React.Component {
 		}
 	}
 
-	handleSubmit = (e) => {
+	handleRegistation = (e) => {
 		e.preventDefault();
 		axios({
 			url: 'http://localhost:3000/registration',
@@ -52,9 +52,7 @@ export default class RegistrationPage extends React.Component {
 					email: "",
 					password: "",
 					cpassword: "",
-					result: []
 				})
-				this.props.history.push('/signin')
 			}
 		}).catch((error) => {
 			console.log(error.response.request);
@@ -89,6 +87,12 @@ export default class RegistrationPage extends React.Component {
 		const NameError = (
 			<Alert variant="danger">
 				{this.state.result.name}
+			</Alert>
+		)
+
+		const RegistrationComplete = (
+			<Alert variant="success">
+				{this.state.result.success}
 			</Alert>
 		)
 
@@ -147,8 +151,12 @@ export default class RegistrationPage extends React.Component {
 
 								{/* display if error exists */}
 								{this.state.result.password ? PasswordError : null}
+								
+								{/* if success */}
+								{this.state.result.success ? RegistrationComplete : null}
 
-								<Button className="float-right" onClick={this.handleSubmit} style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 5px -1px rgba(0,0,0,0.75)', fontSize: '1.5em' }}>Confirm Sign Up</Button>
+								<br></br>
+								<Button className="float-right" onClick={this.handleRegistation} style={{ borderRadius: '0.7em', backgroundColor: '#1E38BF', WebkitBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", MozBoxShadow: "0px 0px 20px -1px rgba(0,0,0,0.75)", boxShadow: '0px 0px 5px -1px rgba(0,0,0,0.75)', fontSize: '1.5em' }}>Confirm Sign Up</Button>
 								<br></br>
 								<br></br>
 							</Form>
