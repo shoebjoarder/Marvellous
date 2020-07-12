@@ -13,7 +13,11 @@ This project was submited as a final project for <a href="https://www.uni-due.de
 
 # Installation
 
-The step-by-step installation documentation of the <a href="https://reactjs.org/">React</a> and  <a href="https://flask.palletsprojects.com/en/1.1.x/">Flask</a> is in our [ installation documentation](docs/INSTALL.md).
+The step-by-step installation guide for <a href="https://reactjs.org/">React</a> and  <a href="https://flask.palletsprojects.com/en/1.1.x/">Flask</a> can be found in our [ installation guide documentation](docs/INSTALL.md).
+
+Link to [Client side initial setup](client/README.md).
+
+Link to [Server side initial setup](server/README.md).
 
 
 # Screenshots

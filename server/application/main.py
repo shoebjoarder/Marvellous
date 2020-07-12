@@ -142,14 +142,6 @@ def browseCourses():
     return dumps(query)
 
 
-@main.route('/findCourse', methods=['POST'])
-def findCourse():
-    title = request.get_json()['title']
-    course_collection = mongo.db.courses
-    query = course_collection.find_one({"title": title})
-    return dumps(query)
-
-
 @main.route('/getEnrolled', methods=['POST'])
 def getEnrolled():
     email = request.get_json()['email']
@@ -184,7 +176,7 @@ def alreadyEnrolled():
     else:
         return jsonify({"fail": "entry not found"})
 
-
+# need to fix the course returning nothing
 @main.route('/getYourCourses', methods=['POST'])
 def getYourCourses():
     email = request.get_json()['email']
