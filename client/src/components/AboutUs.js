@@ -19,7 +19,7 @@ export default function AboutUs() {
 						<Image src="images/uniLogo.png" className="img-fluid visible-lg-block" style={{ height: "7em", marginTop: "2em" }} />
 					</Col>
 					<Col className="align-self-center" style={{ paddingLeft: '4em' }}>
-						<p style={{ fontSize: '3.5em' }}>We are <u style={{ color: '#1E38BF' }}>NXGEN</u></p>
+						<p style={{ fontSize: '3.5em' }}>We are <strong style={{ color: '#1E38BF' }}>NXGEN</strong></p>
 						<p style={{ fontSize: '1.5em' }}>
 							Team members
 							<ul style={{ fontSize: '0.8em' }}>
