@@ -2,21 +2,23 @@ from flask import Flask, request, jsonify, json
 from bson.json_util import dumps, RELAXED_JSON_OPTIONS
 from flask_jwt_extended import create_access_token
 from bson.objectid import ObjectId
+from app import app
+from flask_pymongo import PyMongo
 import os
 import re
 
 app.config['MONGO_URI'] = os.environ.get("MONGODB_URI")
 app.config['MONGO_DBNAME'] = "nxgen"
-app.config['JWT_SECRET_KEY'] = 'super-secret'
+app.config['SECRET_KEY'] = 'super-secret'
 mongo = PyMongo(app)
 
 @app.route('/')
 @app.route('/index')
-def test():
+def index():
     return "Connection successful"
 
 # Login endpoint
-@main.route('/signin', methods=['POST'])
+@app.route('/signin', methods=['POST'])
 def login():
     email = request.get_json()['email']
     password = request.get_json()['password']
@@ -40,7 +42,7 @@ def login():
 
 
 # Registration endpoint
-@main.route('/registration', methods=['POST'])
+@app.route('/registration', methods=['POST'])
 def registration():
     firstname = request.get_json()['firstname']
     lastname = request.get_json()['lastname']
@@ -82,7 +84,7 @@ def registration():
         return jsonify({"password": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 8 characters"})
 
 
-@main.route('/setUserDetails', methods=['POST'])
+@app.route('/setUserDetails', methods=['POST'])
 def setUserDetails():
     firstname = request.get_json()['firstname']
     lastname = request.get_json()['lastname']
@@ -127,7 +129,7 @@ def setUserDetails():
         return jsonify({"password": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 8 characters"})
 
 
-@main.route('/getUserAddress', methods=['POST'])
+@app.route('/getUserAddress', methods=['POST'])
 def getUserAddress():
     email = request.get_json()['email']
     users_collection = mongo.db.users
@@ -139,14 +141,14 @@ def getUserAddress():
         return dumps(query)
 
 
-@main.route('/getCourses', methods=['GET'])
+@app.route('/getCourses', methods=['GET'])
 def browseCourses():
     course_collection = mongo.db.courses
     query = course_collection.find()
     return dumps(query)
 
 
-@main.route('/getEnrolled', methods=['POST'])
+@app.route('/getEnrolled', methods=['POST'])
 def getEnrolled():
     email = request.get_json()['email']
     id = request.get_json()['id']
@@ -157,7 +159,7 @@ def getEnrolled():
     return jsonify({"success": "Enroll complete"})
 
 
-@main.route('/getUnenrolled', methods=['POST'])
+@app.route('/getUnenrolled', methods=['POST'])
 def getUnenrolled():
     email = request.get_json()['email']
     id = request.get_json()['id']
@@ -168,7 +170,7 @@ def getUnenrolled():
     return jsonify({"success": "Enroll complete"})
 
 
-@main.route('/alreadyEnrolled', methods=['POST'])
+@app.route('/alreadyEnrolled', methods=['POST'])
 def alreadyEnrolled():
     email = request.get_json()['email']
     id = request.get_json()['id']
@@ -181,7 +183,7 @@ def alreadyEnrolled():
         return jsonify({"fail": "entry not found"})
 
 # need to fix the course returning nothing
-@main.route('/getYourCourses', methods=['POST'])
+@app.route('/getYourCourses', methods=['POST'])
 def getYourCourses():
     email = request.get_json()['email']
     users_collection = mongo.db.users
@@ -195,7 +197,7 @@ def getYourCourses():
     return dumps(courses)
 
 
-@main.route('/getQuiz', methods=['POST'])
+@app.route('/getQuiz', methods=['POST'])
 def getQuiz():
     # TODO: quiz_1 should be changed to something dynamic because there will be more quizzes
     id = request.get_json()['id']
@@ -205,7 +207,7 @@ def getQuiz():
     return dumps(query)
 
 
-@main.route('/setResult', methods=['POST'])
+@app.route('/setResult', methods=['POST'])
 def setResult():
     email = request.get_json()['email']
     id = request.get_json()['id']
@@ -218,7 +220,7 @@ def setResult():
     return jsonify({"success": "Update complete"})
 
 
-@main.route('/getCourseResults', methods=['POST'])
+@app.route('/getCourseResults', methods=['POST'])
 def getCourseResults():
     email = request.get_json()['email']
     users_collection = mongo.db.users
