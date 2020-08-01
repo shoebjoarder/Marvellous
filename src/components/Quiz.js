@@ -31,7 +31,7 @@ class Quiz extends React.Component {
 
 	getQuizData = (courseID) => {
 		axios({
-			url: 'http://localhost:3000/getQuiz',
+			url: 'https://nxgen-backend.herokuapp.com/getQuiz',
 			method: 'POST',
 			data: {
 				id: courseID
@@ -55,7 +55,7 @@ class Quiz extends React.Component {
 		const decoded = jwt_decode(token)
 		let email = decoded.identity.email
 		axios({
-			url: 'http://localhost:3000/setResult',
+			url: 'https://nxgen-backend.herokuapp.com/setResult',
 			method: 'POST',
 			data: {
 				email: email,

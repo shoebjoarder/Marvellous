@@ -23,7 +23,7 @@ export default class BrowseCourses extends React.Component {
 
 	getYourCourses = (mail) => {
 		axios({
-			url: 'http://localhost:3000/getYourCourses',
+			url: 'https://nxgen-backend.herokuapp.com/getYourCourses',
 			method: 'POST',
 			data: {
 				email: mail
@@ -39,7 +39,7 @@ export default class BrowseCourses extends React.Component {
 
 	getCourses = () => {
 		axios({
-			url: 'http://localhost:3000/getCourses',
+			url: 'https://nxgen-backend.herokuapp.com/getCourses',
 			method: 'GET'
 		}).then((response) => {
 			this.setState({

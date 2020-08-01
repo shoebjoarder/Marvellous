@@ -51,7 +51,7 @@ export default class Profile extends React.Component {
 
 	getCourseResults = (mail) => {
 		axios({
-			url: 'http://localhost:3000/getCourseResults',
+			url: 'https://nxgen-backend.herokuapp.com/getCourseResults',
 			method: 'POST',
 			data: {
 				email: mail
@@ -72,7 +72,7 @@ export default class Profile extends React.Component {
 
 	getUserAddress = (mail) => {
 		axios({
-			url: 'http://localhost:3000/getUserAddress',
+			url: 'https://nxgen-backend.herokuapp.com/getUserAddress',
 			method: 'POST',
 			data: {
 				email: mail
@@ -99,7 +99,7 @@ export default class Profile extends React.Component {
 	setUserDetails = (e) => {
 		e.preventDefault()
 		axios({
-			url: 'http://localhost:3000/setUserDetails',
+			url: 'https://nxgen-backend.herokuapp.com/setUserDetails',
 			method: 'POST',
 			data: {
 				firstname: this.state.firstname,

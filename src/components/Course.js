@@ -54,7 +54,7 @@ export default class Course extends React.Component {
 	handleEnrollNow = (e) => {
 		e.preventDefault();
 		axios({
-			url: 'http://localhost:3000/getEnrolled',
+			url: 'https://nxgen-backend.herokuapp.com/getEnrolled',
 			method: 'POST',
 			data: {
 				email: this.state.email,
@@ -77,7 +77,7 @@ export default class Course extends React.Component {
 	handleUnenrollNow = (e) => {
 		e.preventDefault();
 		axios({
-			url: 'http://localhost:3000/getUnenrolled',
+			url: 'https://nxgen-backend.herokuapp.com/getUnenrolled',
 			method: 'POST',
 			data: {
 				email: this.state.email,
@@ -99,7 +99,7 @@ export default class Course extends React.Component {
 
 	getAlreadyEnrolled = (ident, mail) => {
 		axios({
-			url: 'http://localhost:3000/alreadyEnrolled',
+			url: 'https://nxgen-backend.herokuapp.com/alreadyEnrolled',
 			method: 'POST',
 			data: {
 				email: mail,

@@ -27,7 +27,7 @@ export default class RegistrationPage extends React.Component {
 	handleRegistation = (e) => {
 		e.preventDefault();
 		axios({
-			url: 'http://localhost:3000/registration',
+			url: 'https://nxgen-backend.herokuapp.com/registration',
 			method: 'POST',
 			data: {
 				firstname: this.state.firstname,
