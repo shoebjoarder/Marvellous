@@ -10,6 +10,10 @@ from .extensions import jwt
 
 main = Blueprint('main', __name__)
 
+@app.route('/')
+def test():
+    return "Connection successful"
+
 
 # Login endpoint
 @main.route('/signin', methods=['POST'])
