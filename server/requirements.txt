@@ -1,9 +1,8 @@
-flask
-Flask-PyMongo
-python-dotenv
-dnspython
-bcrypt
-flask-bcrypt
-flask-jwt-extended
-Flask-Dance
-gunicorn
+flask==1.2.2
+Flask-PyMongo==2.3.0
+python-dotenv==0.13.0
+dnspython==1.16.0
+bcrypt==3.1.7
+flask-bcrypt==0.7.1
+flask-jwt-extended==3.24.1
+Flask-Dance==3.0.0
