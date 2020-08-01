@@ -7,7 +7,6 @@ import { Card } from "react-bootstrap"
 class CourseCard extends React.Component {
 
 	handleClick = (course) => {
-		console.log(course)
 		localStorage.setItem("selectedCard", JSON.stringify(course));
 		this.props.history.push('/course');
 	};

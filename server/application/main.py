@@ -2,6 +2,7 @@ from flask import Blueprint, Flask, request, jsonify, json
 from bson.json_util import dumps, RELAXED_JSON_OPTIONS
 from flask_jwt_extended import create_access_token
 from bson.objectid import ObjectId
+import re
 
 from .extensions import mongo
 from .extensions import bcrypt
@@ -20,7 +21,7 @@ def login():
     query = user_collection.find_one({'email': email})
 
     if query is None:
-        return jsonify({"error": "Email not registered"})
+        return jsonify({"email": "Email not registered"})
     elif query:
         if bcrypt.check_password_hash(query['password'], password):
             accessToken = create_access_token(identity={
@@ -28,11 +29,10 @@ def login():
                 'lastname': query['lastname'],
                 'gender': query['gender'],
                 'email': query['email'],
-                # 'courses': query['courses']
             })
             return jsonify({'token': accessToken})
         else:
-            return jsonify({'error': 'Password does not match!'})
+            return jsonify({'password': 'Wrong password! Check again.'})
 
 
 # Registration endpoint
@@ -45,14 +45,27 @@ def registration():
     passwordcheck = request.get_json()['password']
     passwordcheckconfirm = request.get_json()['cpassword']
 
+    if firstname == "" or lastname == "":
+        return jsonify({"name": "Cannot be empty"})
+
+    regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+
+    if email == "":
+        return jsonify({"email": "Enter email"})
+
+    if(re.search(regex, email)):
+        pass
+    else:
+        return jsonify({"email": "Enter a valid email using @ sign"})
+
     user_collection = mongo.db.users
     query = user_collection.find_one({'email': email})
 
     if passwordcheck != passwordcheckconfirm:
-        return jsonify({"error": "Password doesn't match!"})
+        return jsonify({"password": "Password doesn't match!"})
 
     elif query is not None:
-        return jsonify({'error': 'User already exist!'})
+        return jsonify({"email": "User already exist!"})
 
     elif (any(x.isupper() for x in passwordcheck) and any(x.islower() for x in passwordcheck) and any(x.isdigit() for x in passwordcheck) and len(passwordcheck) > 5):
         user_collection = mongo.db.users
@@ -60,9 +73,9 @@ def registration():
             request.get_json()['password']).decode('utf-8')
         user_collection.insert({'firstname': firstname, 'lastname': lastname,
                                 'gender': gender, 'email': email, 'password': password})
-        return jsonify({"success": "registration complete"})
+        return jsonify({"success": "Registration complete!"})
     else:
-        return jsonify({"error": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 6 characters"})
+        return jsonify({"password": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 8 characters"})
 
 
 @main.route('/setUserDetails', methods=['POST'])
@@ -77,8 +90,14 @@ def setUserDetails():
     passwordcheck = request.get_json()['password']
     passwordcheckconfirm = request.get_json()['cpassword']
 
+    if firstname == "":
+        return jsonify({"firstname": "Firstname cannot be empty"})
+
+    if lastname == "":
+        return jsonify({"lastname": "Lastname cannot be empty"})
+
     if passwordcheck != passwordcheckconfirm:
-        return jsonify({"error": "Password doesn't match!"})
+        return jsonify({"password": "Password doesn't match!"})
 
     elif (passwordcheck == "" and passwordcheckconfirm == ""):
         users_collection = mongo.db.users
@@ -99,9 +118,9 @@ def setUserDetails():
 
         users_collection.find_one_and_update({"email": email}, newvalues)
 
-        return jsonify({"success": "Update complete"})
+        return jsonify({"success": "Profile details updated!"})
     else:
-        return jsonify({"error": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 6 characters"})
+        return jsonify({"password": "Make sure that password contain atleast 1 uppercase, 1 lowercase, 1 number and 8 characters"})
 
 
 @main.route('/getUserAddress', methods=['POST'])
@@ -120,14 +139,6 @@ def getUserAddress():
 def browseCourses():
     course_collection = mongo.db.courses
     query = course_collection.find()
-    return dumps(query)
-
-
-@main.route('/findCourse', methods=['POST'])
-def findCourse():
-    title = request.get_json()['title']
-    course_collection = mongo.db.courses
-    query = course_collection.find_one({"title": title})
     return dumps(query)
 
 
@@ -165,7 +176,7 @@ def alreadyEnrolled():
     else:
         return jsonify({"fail": "entry not found"})
 
-
+# need to fix the course returning nothing
 @main.route('/getYourCourses', methods=['POST'])
 def getYourCourses():
     email = request.get_json()['email']
@@ -197,7 +208,8 @@ def setResult():
     title = request.get_json()['title']
     score = request.get_json()['result']
     users_collection = mongo.db.users
-    newvalues = {'$addToSet': {'results': { "id": id, "score": score, "title": title }}}
+    newvalues = {'$addToSet': {'results': {
+        "id": id, "score": score, "title": title}}}
     users_collection.find_one_and_update({"email": email}, newvalues)
     return jsonify({"success": "Update complete"})
 
@@ -206,7 +218,8 @@ def setResult():
 def getCourseResults():
     email = request.get_json()['email']
     users_collection = mongo.db.users
-    query = users_collection.find_one({'email': email}, {'results': 1, "_id": 0})
+    query = users_collection.find_one(
+        {'email': email}, {'results': 1, "_id": 0})
     if query is None:
         return jsonify({"error": "no courses"})
     return dumps(query)

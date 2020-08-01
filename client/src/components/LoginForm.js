@@ -5,7 +5,8 @@ import {
 	Col,
 	Row,
 	Form,
-	Button
+	Button,
+	Alert
 } from "react-bootstrap";
 import axios from 'axios'
 
@@ -64,6 +65,17 @@ export default class LoginForm extends React.Component {
 	};
 
 	render() {
+		const EmailError = (
+			<Alert variant="danger">
+				{this.state.result.email}
+			</Alert>
+		)
+
+		const PasswordError = (
+			<Alert variant="danger">
+				{this.state.result.password}
+			</Alert>
+		)
 		return (
 			<Container>
 				<Row style={{ marginTop: "5.75em", marginBottom: '11.4em' }}>
@@ -81,13 +93,16 @@ export default class LoginForm extends React.Component {
 								<Form.Control type="email" name="email" id="email" placeholder="jon.doe@example.com" value={this.state.email} onChange={this.handleInputs} />
 							</Form.Group>
 
+							{/* display if error exists */}
+							{this.state.result.email ? EmailError : null}
+
 							<Form.Group controlId="formInputPassword">
 								<Form.Label>Password</Form.Label>
 								<Form.Control type="password" name="password" id="password" value={this.state.password} onChange={this.handleInputs} required ></Form.Control>
 							</Form.Group>
 
-							{/* Displays if there are errors */}
-							{this.state.result.error}
+							{/* display if error exists */}
+							{this.state.result.password ? PasswordError : null}
 
 							<br></br>
 							<br></br>

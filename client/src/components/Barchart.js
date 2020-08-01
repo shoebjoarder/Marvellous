@@ -39,7 +39,7 @@ export class LineChart extends React.Component {
 		return (
 			<div className="card shadow">
 				<div className="card-header">
-					<h6 className="m-0 font-weight-bold text-primary">My Quiz Points</h6>
+					<h6 className="m-0 font-weight-bold text-primary">My Achievements</h6>
 				</div>
 				<div className="card-body">
 					<Bar
@@ -51,7 +51,7 @@ export class LineChart extends React.Component {
 							legend: { display: false },
 							title: {
 								display: true,
-								text: 'My quiz points for courses',
+								text: 'Quiz points for courses',
 							},
 							scales: {
 								xAxes: [{

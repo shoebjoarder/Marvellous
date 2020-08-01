@@ -1,0 +1,72 @@
+[{
+  "_id": {
+    "$oid": "5eff0dcebc1e9d8c825406d3"
+  },
+  "firstname": "Shoeb",
+  "lastname": "Joarder",
+  "gender": "Male",
+  "email": "shoeb@gmail.com",
+  "password": "$2b$12$EADyUubHPuMzxXevxjLtKeodv00hP2dVhtUoThQyXwGznqaCtxFZC",
+  "course": [
+    "5f003bc90c5d145b0cab4b1b",
+    "5f003b890c5d145b0cab4b19"
+  ],
+  "address": {
+    "street": "Berlinerplatz 30",
+    "city": "Berlin",
+    "province": "Berlin",
+    "zipcode": "12314"
+  },
+  "results": [
+    {
+      "id": "5f003b890c5d145b0cab4b19",
+      "score": 6,
+      "title": "MongoDB"
+    },
+    {
+      "id": "5f003bc90c5d145b0cab4b1b",
+      "score": 7,
+      "title": "React part 2"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "5eff3bec43380ddfb3913080"
+  },
+  "firstname": "Marzie",
+  "lastname": "Mirhashemi",
+  "gender": "Female",
+  "email": "marzie@gmail.com",
+  "password": "$2b$12$gRiUD1ZVgGKU.HCZazT4ZuICUuxeRaS2LUQKOoOrr9PhyFm..90lW",
+  "course": [
+    "5f003bc90c5d145b0cab4b1b",
+    "5f003b890c5d145b0cab4b19"
+  ],
+  "address": {
+    "street": "",
+    "city": "",
+    "province": "",
+    "zipcode": ""
+  },
+  "results": [
+    {
+      "id": "5f003bc90c5d145b0cab4b1b",
+      "score": 7,
+      "title": "React part 2"
+    },
+    {
+      "id": "5f003b890c5d145b0cab4b19",
+      "score": 2,
+      "title": "MongoDB"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "5f0775dedee8d05ead4769c7"
+  },
+  "firstname": "Yunlong",
+  "lastname": "Zhao",
+  "gender": "Not specified",
+  "email": "yunlong@gmail.com",
+  "password": "$2b$12$Rsbu.nz64L.kuwMJlFCkXuPOkXnMrpeE3.VMUSJ01h/IZkST2ckfe"
+}]

@@ -47,7 +47,6 @@ export default class Course extends React.Component {
 			image: image += '/' + token['image'],
 			email: mail
 		});
-		console.log(ident)
 		this.getAlreadyEnrolled(ident, mail)
 
 	}
