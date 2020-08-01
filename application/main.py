@@ -1,15 +1,18 @@
-from flask import Blueprint, Flask, request, jsonify, json
+from flask import Flask, request, jsonify, json
 from bson.json_util import dumps, RELAXED_JSON_OPTIONS
 from flask_jwt_extended import create_access_token
 from bson.objectid import ObjectId
+import os
 import re
 
-from .extensions import mongo
-from .extensions import bcrypt
-from .extensions import jwt
+app.config['MONGO_URI'] = os.environ.get("MONGODB_URI")
+app.config['MONGO_DBNAME'] = "nxgen"
+app.config['JWT_SECRET_KEY'] = 'super-secret'
 
-main = Blueprint('main', __name__)
-
+@app.route('/')
+@app.route('/index')
+def test():
+    return "Connection successful"
 
 # Login endpoint
 @main.route('/signin', methods=['POST'])
