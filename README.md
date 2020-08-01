@@ -1,34 +1,64 @@
+# Client side
 
-<p align="left">
-<img src="client/public/images/nxgenLogo.png" width="100">
-</p>
+Run the following command to install all the packages required to run the react application
 
-# Be Marvellous
+    npm install
 
-Marvellous is a video based learning platform that aims the students to enroll into courses, take part in quizzes and show their scores.
+Then run the following command to start
 
-This project was submited as a final project for <a href="https://www.uni-due.de/soco/teaching/courses/lecture-advwebtech-ss20.php">Advanced Web Technologies SS20</a> course under <a href="https://www.uni-due.de/soco/">Social Computing department</a> at the <a href="https://www.uni-due.de/en/index.php">Duisburg-Essen University</a>.
+    npm start
 
-<a href="https://www.youtube.com/watch?v=5uQ82EeYmuo">Check out our demo</a>
+# Client folder structure
 
-# Installation
+The client side of the project has the following folder structure:
 
-The step-by-step installation guide for <a href="https://reactjs.org/">React</a> and  <a href="https://flask.palletsprojects.com/en/1.1.x/">Flask</a> can be found in our [ installation guide documentation](docs/INSTALL.md).
-
-Link to [Client side initial setup](client/README.md).
-
-Link to [Server side initial setup](server/README.md).
-
-
-# Screenshots
-
-Go to the [screenshots](docs/screenshots) folder to get a visual idea of Marvellous
-
-
-# Contributors
-
-<a href="https://www.linkedin.com/in/shoeb-joarder/">Shoeb Ahmed Joarder</a>
-<br>
-<a href="https://www.xing.com/profile/Marzie_Mirhashemi">Seyedemarzie Mirhashemi</a>
-<br>
-Yunlong Zhao
+client:
++ public (folder)
+    + images (folder)
+        + barchart.png
+        + bootstrap.png
+        + brain.png
+        + dash.png
+        + edit.png
+        + feature.png
+        + flask.png
+        + github.png
+        + logo.ico
+        + mongodb.png
+        + no-video.png
+        + nxgenCover.png
+        + nxgenLogo.png
+        + react.png
+        + socoLogo.png
+        + uniLogo.png
+        + user.png
+        + userF.png
+        + userM.png
+    + index.html (file)
+    + manifest.json (file)
+    + robots.txt (file)
++ src (folder)
+    + components (folder)
+        + AboutUs.js
+        + Barchart.js
+        + BrowseCourses.js
+        + Course.js
+        + CourseCard.js
+        + FooterBar.js
+        + LandingPage.js
+        + LoginChoice.js
+        + LoginForm.js
+        + NavigationBar.js
+        + Profile.js
+        + Quiz.js
+        + Registration.js
+        + VideoPage.js
+    + App.js (App file)
+    + index.css (CSS file)
+    + index.js (file)
+    + RouterPage.js (Router component of the application)
+    + serviceWorker.js (file)
++ .gitignore (git ignore file)
++ package.json (package file)
++ package-lock.json (file)
++ README.md (client readme file)
