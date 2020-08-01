@@ -8,4 +8,4 @@ if __name__ == "__main__":
 
 CORS(app)
 
-from application import main
+from app import main
