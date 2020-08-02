@@ -9,7 +9,9 @@ Marvellous is a video based learning platform that aims the students to enroll i
 
 This project was submited as a final project for <a href="https://www.uni-due.de/soco/teaching/courses/lecture-advwebtech-ss20.php">Advanced Web Technologies SS20</a> course under <a href="https://www.uni-due.de/soco/">Social Computing department</a> at the <a href="https://www.uni-due.de/en/index.php">Duisburg-Essen University</a>.
 
-<a href="https://www.youtube.com/watch?v=5uQ82EeYmuo">Check out our demo</a>
+Check out our <a href="https://www.youtube.com/watch?v=5uQ82EeYmuo">demo</a>
+
+Follow this  <a href="https://nxgen.herokuapp.com/">link</a> to the deployed version of the project.
 
 # Installation
 
@@ -19,11 +21,22 @@ Link to [Client side initial setup](client/README.md).
 
 Link to [Server side initial setup](server/README.md).
 
+# Features, Technologies and Technical Architecture
+
+![features](docs/introductory-screenshots/features.png)
+
+![technologies](docs/introductory-screenshots/technologies.png)
+
+![technical-architecture-workflow](docs/introductory-screenshots/technical-architecture-workflow.png)
+
+![react-components](docs/introductory-screenshots/react-components.png)
+
+![backend-connection](docs/introductory-screenshots/backend-connection.png)
+
 
 # Screenshots
 
 Go to the [screenshots](docs/screenshots) folder to get a visual idea of Marvellous
-
 
 # Contributors
 
