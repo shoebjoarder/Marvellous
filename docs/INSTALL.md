@@ -5,11 +5,10 @@
     *   [NodeJS in Linux](#nodejs-in-Linux)
 2. [Installation of the backend softwares](#installation-of-the-backend-softwares)
     *   [Python in Windows](#python-in-windows)
-    *   [MongoDB](#mongodb)
+    *   [MongoDB and Mongo Compass](#mongodb-and-mongo-compass)
 3. [Installation of additional softwares](#installation-of-additional-softwares)
     *   [Visual Studio Code](#visual-studio-code)
     *   [React Development Tools](#react-development-tools)
-    *   [MongoDB and Mongo Compass](#mongodb-and-mongo-compass)
 
 
 # Installation of frontend softwares
@@ -64,27 +63,7 @@ Copy the link below and paste it in the browser.
 
 Install Python after successfully downloading the file.
 
-# Installation of additional softwares
-
-## Visual Studio Code
-
-Download Visual Studio Code
-
-    https://code.visualstudio.com/download
-
-![visual-code-1](visual-code-1.png)
-
-![visual-code-2](visual-code-2.png)
-
 <hr>
-
-## React Development Tools
-
-Install a chrome extension for React.
-
-    https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de
-
-![react-dev-tool](react-dev-tool.png)
 
 ## MongoDB and Mongo Compass
 
@@ -113,3 +92,25 @@ Step 4: If the service is not running, run the mongodb service
     $ sudo systemctl start mongodb
 
 You can install the MongoDB Compass from the Ubuntu Store.
+
+# Installation of additional softwares
+
+## Visual Studio Code
+
+Download Visual Studio Code
+
+    https://code.visualstudio.com/download
+
+![visual-code-1](visual-code-1.png)
+
+![visual-code-2](visual-code-2.png)
+
+<hr>
+
+## React Development Tools
+
+Install a chrome extension for React.
+
+    https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=de
+
+![react-dev-tool](react-dev-tool.png)
