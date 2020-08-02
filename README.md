@@ -9,7 +9,7 @@ Marvellous is a video based learning platform that aims the students to enroll i
 
 This project was submited as a final project for <a href="https://www.uni-due.de/soco/teaching/courses/lecture-advwebtech-ss20.php">Advanced Web Technologies SS20</a> course under <a href="https://www.uni-due.de/soco/">Social Computing department</a> at the <a href="https://www.uni-due.de/en/index.php">Duisburg-Essen University</a>.
 
-Check out our <a href="https://www.youtube.com/watch?v=5uQ82EeYmuo">demo</a>
+Check out our <a href="https://youtu.be/tfftwIBJVR8">demo</a>
 
 # Installation
 
