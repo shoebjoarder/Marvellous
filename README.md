@@ -11,8 +11,6 @@ This project was submited as a final project for <a href="https://www.uni-due.de
 
 Check out our <a href="https://www.youtube.com/watch?v=5uQ82EeYmuo">demo</a>
 
-Follow this  <a href="https://nxgen.herokuapp.com/">link</a> to the deployed version of the project.
-
 # Installation
 
 The step-by-step installation guide for <a href="https://reactjs.org/">React</a> and  <a href="https://flask.palletsprojects.com/en/1.1.x/">Flask</a> can be found in our [ installation guide documentation](docs/INSTALL.md).
@@ -33,6 +31,12 @@ Link to [Server side initial setup](server/README.md).
 
 ![backend-connection](docs/introductory-screenshots/backend-connection.png)
 
+
+# Deployed version of the project
+
+Click this <a href="https://nxgen-backend.herokuapp.com/"> link </a> to instantiate the backend of the deployed project.
+
+Follow this  <a href="https://nxgen.herokuapp.com/">link</a> to the deployed version of the project.
 
 # Screenshots
 
