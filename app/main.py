@@ -9,7 +9,7 @@ import re
 
 app.config['MONGO_URI'] = os.environ.get("MONGODB_URI")
 app.config['MONGO_DBNAME'] = "nxgen"
-app.config['SECRET_KEY'] = 'super-secret'
+app.config['SECRET_KEY'] =  'secret'
 mongo = PyMongo(app)
 
 @app.route('/')
