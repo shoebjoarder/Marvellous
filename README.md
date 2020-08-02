@@ -8,7 +8,7 @@ The server side deployment to Heroku of the project has the following folder str
 
 server:
 + app (folder)
-    + __init__.py
+    + `__init__`.py
     + main.py
 + .gitignore
 + Procfile
