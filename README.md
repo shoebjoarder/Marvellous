@@ -1,34 +1,17 @@
-# Server side
+# Server side deployment to Heroku
 
-Install the following dependencies
+This is the deployment branch to Heroku for the project.
 
-    pip install -r requirements.txt
+# Folder structure
 
-Create a **.env** file here and write the following, when testing locally.
-
-    MONGO_URI='mongodb://localhost:27017/nxgen'
-
-
-Open your Mongo Compass and create a database named "nxgen" and a collection "courses". Then import the data from **data/course.json**.
-
-Run the server
-
-    flask run
-
-# Server side folder structure
-
-The Server side of the project has the following folder structure:
+The server side deployment to Heroku of the project has the following folder structure:
 
 server:
-+ application (folder)
++ app (folder)
     + __init__.py
-    + extensions.py
     + main.py
-    + settings.py
-+ data (folder)
-    + courses.json
-    + users.json
-+ .flaskenv
++ .gitignore
++ Procfile
 + README.md
 + requirements.txt
-+ .gitignore
++ wsgi.py
