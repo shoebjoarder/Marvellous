@@ -1,18 +1,13 @@
-# Client side
+# Client side for the deployment to Heroku
 
-Run the following command to install all the packages required to run the react application
-
-    npm install
-
-Then run the following command to start
-
-    npm start
+This is the branch used to deploy the project's client side to Heroku
 
 # Client folder structure
 
 The client side of the project has the following folder structure:
 
 client:
++ build (production build folder)
 + public (folder)
     + images (folder)
         + barchart.png
@@ -61,4 +56,4 @@ client:
 + .gitignore (git ignore file)
 + package.json (package file)
 + package-lock.json (file)
-+ README.md (client readme file)
++ README.md (client side readme file)
