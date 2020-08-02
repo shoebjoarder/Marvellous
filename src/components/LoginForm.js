@@ -24,7 +24,7 @@ export default class LoginForm extends React.Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		axios({
-			url: 'http://nxgen-backend.herokuapp.com/signin',
+			url: 'https://nxgen-backend.herokuapp.com/signin',
 			method: 'POST',
 			data: {
 				email: this.state.email,
