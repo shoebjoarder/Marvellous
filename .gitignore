@@ -109,3 +109,4 @@ dist
 __pycache__/
 .vscode/
 /awtproject.code-workspace
+build/
