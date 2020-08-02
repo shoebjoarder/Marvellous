@@ -1,16 +1,20 @@
-from flask import Flask, request, jsonify, json
+from flask_jwt_extended import JWTManager, create_access_token
 from bson.json_util import dumps, RELAXED_JSON_OPTIONS
-from flask_jwt_extended import create_access_token
+from flask import Flask, request, jsonify, json
 from bson.objectid import ObjectId
-from app import app
 from flask_pymongo import PyMongo
+from flask_bcrypt import Bcrypt 
+from app import app
 import os
 import re
 
 app.config['MONGO_URI'] = os.environ.get("MONGODB_URI")
 app.config['MONGO_DBNAME'] = "nxgen"
-app.config['SECRET_KEY'] =  'secret'
+app.config['JWT_SECRET_KEY'] =  'secret'
+
 mongo = PyMongo(app)
+jwt = JWTManager(app)
+bcrypt = Bcrypt(app)
 
 @app.route('/')
 @app.route('/index')
