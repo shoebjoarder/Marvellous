@@ -9,7 +9,7 @@ Marvellous is a video based learning platform that aims the students to enroll i
 
 This project was submited as a final project for <a href="https://www.uni-due.de/soco/teaching/courses/lecture-advwebtech-ss20.php">Advanced Web Technologies SS20</a> course under <a href="https://www.uni-due.de/soco/">Social Computing department</a> at the <a href="https://www.uni-due.de/en/index.php">Duisburg-Essen University</a>.
 
-Check out our <a href="https://youtu.be/tfftwIBJVR8">demo</a>
+Check out our <a href="https://youtu.be/tfftwIBJVR8" target="_blank">demo</a>
 
 # Installation
 
@@ -34,9 +34,9 @@ Link to [Server side initial setup](server/README.md).
 
 # Deployed version of the project
 
-Click this <a href="https://nxgen-backend.herokuapp.com/"> link </a> to instantiate the backend of the deployed project.
+Click this <a href="https://nxgen-backend.herokuapp.com/" target="_blank"> link </a> to instantiate the backend of the deployed project.
 
-Follow this  <a href="https://nxgen.herokuapp.com/">link</a> to the deployed version of the project.
+Follow this <a href="https://nxgen.herokuapp.com/" target="_blank">link</a> to the deployed version of the project.
 
 # Screenshots
 
@@ -44,8 +44,8 @@ Go to the [screenshots](docs/screenshots) folder to get a visual idea of Marvell
 
 # Contributors
 
-<a href="https://www.linkedin.com/in/shoeb-joarder/">Shoeb Ahmed Joarder</a>
+<a href="https://www.linkedin.com/in/shoeb-joarder/" target="_blank">Shoeb Ahmed Joarder</a>
 <br>
-<a href="https://www.xing.com/profile/Marzie_Mirhashemi">Seyedemarzie Mirhashemi</a>
+<a href="https://www.xing.com/profile/Marzie_Mirhashemi" target="_blank">Seyedemarzie Mirhashemi</a>
 <br>
 Yunlong Zhao
